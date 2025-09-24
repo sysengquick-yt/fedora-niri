@@ -1,0 +1,6 @@
+- name: Get home directory
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    state: present
+  register: niri_user
+  check_mode: true
