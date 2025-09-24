@@ -21,3 +21,7 @@
 - name: Import directory tasks
   ansible.builtin.import_tasks: directory.yml
   tags: [directory]
+
+- name: Import config tasks
+  ansible.builtin.import_tasks: config.yml
+  tags: [config]

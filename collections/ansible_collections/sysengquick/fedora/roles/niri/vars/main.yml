@@ -4,6 +4,9 @@ niri_config_dirs:
   - systemd/user
   - waybar
 
+niri_config_files:
+  - niri/config.kdl
+
 niri_packages:
   - niri
   - blueman-applet
