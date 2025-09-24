@@ -1,0 +1,36 @@
+- name: Tags block
+  tags: [apps_packages_repo]
+  block:
+    - name: Install third-party repos
+      ansible.builtin.get_url:
+        url: "{{ apps_repos[item] }}"
+        dest: "/etc/yum.repos.d/{{ item }}.repo"
+        mode: "0644"
+      loop: "{{ apps_repos.keys() | difference(apps_skip) | sort }}"
+
+    - name: Install packages
+      ansible.builtin.dnf:
+        name: "{{ apps_packages | difference(apps_skip) | sort }}"
+        state: "{{ 'latest' if apps_upgrade else 'present' }}"
+        update_only: "{{ apps_upgrade }}"
+        allowerasing: true
+
+- name: Tags block
+  tags: [apps_packages_rpms]
+  block:
+    - name: Create temp dir for RPM packages
+      ansible.builtin.tempfile:
+        state: directory
+      register: apps_tmpdir
+
+    - name: Gather facts about installed packages
+      ansible.builtin.package_facts:
+
+    - name: Install RPM packages
+      ansible.builtin.include_tasks: includes/rpm_package.yml
+      loop: "{{ apps_rpms.keys() | difference(apps_skip) | sort }}"
+  always:
+    - name: Remove tempdir for RPM downloads
+      ansible.builtin.file:
+        state: absent
+        path: "{{ apps_tmpdir.path }}"

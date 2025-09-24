@@ -1,0 +1,18 @@
+---
+argument_specs:
+  main:
+    options:
+      apps_skip:
+        type: list
+        elements: str
+        required: false
+        default: []
+        description: List of apps to skip installing
+      apps_upgrade:
+        type: bool
+        required: false
+        default: false
+        description: Flag to force upgrade of apps
+
+dependencies:
+  - role: sysengquick.fedora.user

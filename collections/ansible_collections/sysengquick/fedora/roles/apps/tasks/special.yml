@@ -1,0 +1,4 @@
+---
+- name: Include special tasks
+  ansible.builtin.include_tasks: "includes/special/{{ item }}.yml"
+  loop: "{{ apps_special | difference(apps_skip) | sort }}"

@@ -2,7 +2,7 @@
 - name: Create user systemd directory
   ansible.builtin.file:
     state: directory
-    dest: "{{ niri_user.home }}/.config/systemd/user"
+    dest: "{{ user_info.home }}/.config/systemd/user"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0755"
@@ -11,7 +11,7 @@
 - name: Copy systemd service files
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ niri_user.home }}/.config/{{ item }}"
+    dest: "{{ user_info.home }}/.config/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0644"
@@ -21,5 +21,5 @@
 - name: Add niri.service wants # noqa: command-instead-of-module
   ansible.builtin.command:
     cmd: "systemctl --user add-wants niri.service {{ item }}"
-    creates: "{{ niri_user.home }}/.config/systemd/user/niri.service.wants/{{ item }}"
+    creates: "{{ user_info.home }}/.config/systemd/user/niri.service.wants/{{ item }}"
   loop: "{{ niri_service_wants }}"
