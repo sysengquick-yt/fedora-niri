@@ -1,2 +1,1 @@
-# fedora-niri
-Fedora niri ansible plays
+collections/ansible_collections/sysengquick/fedora/README.md
