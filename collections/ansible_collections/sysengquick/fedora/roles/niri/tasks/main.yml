@@ -1,0 +1,4 @@
+---
+- name: Import COPR tasks
+  ansible.builtin.import_tasks: copr.yml
+  tags: [copr]
