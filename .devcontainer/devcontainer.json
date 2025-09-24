@@ -1,0 +1,36 @@
+{
+  "name": "sysengquick-fedora-niri",
+  "dockerComposeFile": "compose.yaml",
+  "service": "devc",
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "be5invis.toml",
+        "esbenp.prettier-vscode",
+        "oderwat.indent-rainbow",
+        "redhat.ansible"
+      ],
+      "settings": {
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[markdown]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "editor.formatOnSave": true,
+        "files.associations": {
+          "*.yml": "ansible"
+        },
+        "files.trimFinalNewlines": true,
+        "files.trimTrailingWhitespace": true,
+        "ansible.python.interpreterPath": "/usr/local/bin/python3",
+        "python.defaultInterpreterPath": "/usr/local/bin/python3"
+      }
+    }
+  }
+}
