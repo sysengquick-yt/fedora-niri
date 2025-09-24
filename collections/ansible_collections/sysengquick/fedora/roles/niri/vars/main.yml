@@ -6,6 +6,8 @@ niri_config_dirs:
 
 niri_config_files:
   - niri/config.kdl
+  - waybar/config.jsonc
+  - waybar/style.css
 
 niri_packages:
   - niri
