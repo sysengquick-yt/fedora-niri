@@ -1,0 +1,8 @@
+---
+niri_packages:
+  - niri
+  - blueman-applet
+  - nm-applet
+  - pasystray
+  - sddm
+  - sddm-themes

@@ -2,3 +2,7 @@
 - name: Import COPR tasks
   ansible.builtin.import_tasks: copr.yml
   tags: [copr]
+
+- name: Import packages tasks
+  ansible.builtin.import_tasks: packages.yml
+  tags: [packages]
