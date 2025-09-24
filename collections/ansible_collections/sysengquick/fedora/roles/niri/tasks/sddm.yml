@@ -1,0 +1,14 @@
+---
+- name: Configure sddm theme
+  ansible.builtin.copy:
+    src: sddm/theme.conf
+    dest: /etc/sddm.conf.d/theme.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Enable graphical.target
+  ansible.builtin.systemd_service:
+    name: graphical.target
+    state: started
+    enabled: true

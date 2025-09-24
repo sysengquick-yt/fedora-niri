@@ -1,0 +1,25 @@
+---
+- name: Create user systemd directory
+  ansible.builtin.file:
+    state: directory
+    dest: "{{ niri_user.home }}/.config/systemd/user"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  loop: "{{ niri_config_dirs }}"
+
+- name: Copy systemd service files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ niri_user.home }}/.config/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  notify: Sysengquick.fedora.niri systemctl user daemon-reload
+  loop: "{{ niri_systemd_service_files }}"
+
+- name: Add niri.service wants # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: "systemctl --user add-wants niri.service {{ item }}"
+    creates: "{{ niri_user.home }}/.config/systemd/user/niri.service.wants/{{ item }}"
+  loop: "{{ niri_service_wants }}"

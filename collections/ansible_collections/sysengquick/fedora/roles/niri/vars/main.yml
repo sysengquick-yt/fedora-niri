@@ -1,0 +1,26 @@
+---
+niri_config_dirs:
+  - niri
+  - waybar
+
+niri_config_files:
+  - niri/config.kdl
+  - waybar/config.jsonc
+  - waybar/style.css
+
+niri_packages:
+  - niri
+  - blueman-applet
+  - nm-applet
+  - pasystray
+  - sddm
+  - sddm-themes
+
+niri_service_wants:
+  - waybar.service
+  - swaybg.service
+  - swayidle.service
+
+niri_systemd_service_files:
+  - systemd/user/swaybg.service
+  - systemd/user/swayidle.service

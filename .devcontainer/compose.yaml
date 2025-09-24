@@ -1,0 +1,9 @@
+---
+services:
+  devc:
+    image: ghcr.io/sysengquick-yt/fedora-niri-devc:latest
+    command: sleep infinity
+    environment:
+      ANSIBLE_CONFIG: /workspace/.devcontainer/ansible.cfg
+    volumes:
+      - ..:/workspace:cached,z

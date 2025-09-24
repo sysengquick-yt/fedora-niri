@@ -1,0 +1,9 @@
+---
+- name: Setup niri COPR repo
+  ansible.builtin.get_url:
+    url: "https://{{ base_url }}/coprs/yalter/niri/repo/fedora-{{ version }}/yalter-niri-fedora-{{ version }}.repo"
+    dest: "/etc/yum.repos.d/_copr:{{ base_url }}:yalter:niri.repo"
+    mode: "0644"
+  vars:
+    base_url: copr.fedorainfracloud.org
+    version: "{{ ansible_facts.distribution_major_version }}"

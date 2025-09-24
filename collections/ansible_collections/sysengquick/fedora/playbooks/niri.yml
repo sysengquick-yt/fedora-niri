@@ -1,0 +1,8 @@
+---
+- name: Install niri on fedora
+  hosts: niri
+  gather_facts: true
+  gather_subset: ["!all", "!min", "os_family"]
+  roles:
+    - role: sysengquick.fedora.niri
+      tags: [niri]

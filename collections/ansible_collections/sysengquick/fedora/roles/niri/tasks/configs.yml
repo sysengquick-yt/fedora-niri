@@ -1,0 +1,18 @@
+---
+- name: Create config directories
+  ansible.builtin.file:
+    state: directory
+    dest: "{{ niri_user.home }}/.config/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  loop: "{{ niri_config_dirs }}"
+
+- name: Copy config files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ niri_user.home }}/.config/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  loop: "{{ niri_config_files }}"
