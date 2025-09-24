@@ -2,3 +2,7 @@
   ansible.builtin.import_tasks: packages.yml
   become: true
   tags: [apps_packages]
+
+- name: Import flatpaks tasks
+  ansible.builtin.import_tasks: flatpaks.yml
+  tags: [apps_flatpaks]

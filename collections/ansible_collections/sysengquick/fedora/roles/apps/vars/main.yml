@@ -1,4 +1,7 @@
 ---
+apps_flatpaks:
+  - com.obsproject.Studio
+
 apps_packages:
   - brave-browser
   - btop
