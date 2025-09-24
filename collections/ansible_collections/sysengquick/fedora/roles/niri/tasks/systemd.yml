@@ -8,3 +8,9 @@
     mode: "0644"
   notify: Sysengquick.fedora.niri systemctl user daemon-reload
   loop: "{{ niri_systemd_service_files }}"
+
+- name: Add niri.service wants # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: "systemctl --user add-wants niri.service {{ item }}"
+    creates: "{{ niri_user.home }}/.config/systemd/user/niri.service.wants/{{ item }}"
+  loop: "{{ niri_service_wants }}"
