@@ -25,3 +25,7 @@
 - name: Import config tasks
   ansible.builtin.import_tasks: config.yml
   tags: [config]
+
+- name: Import systemd unit tasks
+  ansible.builtin.import_tasks: systemd.yml
+  tags: [systemd]

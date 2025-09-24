@@ -1,0 +1,5 @@
+---
+- name: Sysengquick.fedora.niri systemctl user daemon-reload # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: systemctl --user daemon-reload
+  changed_when: true

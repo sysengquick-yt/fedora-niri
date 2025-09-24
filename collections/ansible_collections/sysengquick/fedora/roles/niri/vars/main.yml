@@ -16,3 +16,7 @@ niri_packages:
   - pasystray
   - sddm
   - sddm-themes
+
+niri_systemd_service_files:
+  - systemd/user/swaybg.service
+  - systemd/user/swayidle.service
