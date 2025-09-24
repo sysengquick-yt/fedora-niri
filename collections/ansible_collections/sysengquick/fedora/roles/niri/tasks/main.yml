@@ -18,14 +18,10 @@
   ansible.builtin.import_tasks: user.yml
   tags: [always]
 
-- name: Import directory tasks
-  ansible.builtin.import_tasks: directory.yml
-  tags: [directory]
-
 - name: Import config tasks
-  ansible.builtin.import_tasks: config.yml
-  tags: [config]
+  ansible.builtin.import_tasks: configs.yml
+  tags: [configs]
 
-- name: Import systemd unit tasks
+- name: Import systemd tasks
   ansible.builtin.import_tasks: systemd.yml
   tags: [systemd]

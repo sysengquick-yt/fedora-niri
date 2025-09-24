@@ -1,4 +1,13 @@
 ---
+- name: Create user systemd directory
+  ansible.builtin.file:
+    state: directory
+    dest: "{{ niri_user.home }}/.config/systemd/user"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  loop: "{{ niri_config_dirs }}"
+
 - name: Copy systemd service files
   ansible.builtin.copy:
     src: "{{ item }}"

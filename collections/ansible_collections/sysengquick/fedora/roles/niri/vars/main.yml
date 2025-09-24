@@ -1,7 +1,6 @@
 ---
 niri_config_dirs:
   - niri
-  - systemd/user
   - waybar
 
 niri_config_files:
