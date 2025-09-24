@@ -17,3 +17,7 @@
 - name: Import user tasks
   ansible.builtin.import_tasks: user.yml
   tags: [always]
+
+- name: Import directory tasks
+  ansible.builtin.import_tasks: directory.yml
+  tags: [directory]
