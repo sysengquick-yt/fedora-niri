@@ -1,0 +1,16 @@
+---
+apps_packages:
+  - brave-browser
+  - btop
+  - chromium
+  - evolution-ews
+  - freerdp
+  - fuse-libs
+  - git
+  - kitty
+  - podman-compose
+  - podman-docker
+  - vim-default-editor
+
+apps_repos:
+  brave-browser: https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo

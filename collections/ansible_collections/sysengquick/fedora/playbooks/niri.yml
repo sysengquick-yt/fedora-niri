@@ -5,3 +5,5 @@
   roles:
     - role: sysengquick.fedora.niri
       tags: [niri]
+    - role: sysengquick.fedora.apps
+      tags: [apps]

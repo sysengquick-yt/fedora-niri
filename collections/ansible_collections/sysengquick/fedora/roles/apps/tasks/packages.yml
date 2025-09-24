@@ -1,0 +1,16 @@
+- name: Tags block
+  tags: [apps_packages_repo]
+  block:
+    - name: Install third-party repos
+      ansible.builtin.get_url:
+        url: "{{ apps_repos[item] }}"
+        dest: "/etc/yum.repos.d/{{ item }}.repo"
+        mode: "0644"
+      loop: "{{ apps_repos.keys() | difference(apps_skip) | sort }}"
+
+    - name: Install packages
+      ansible.builtin.dnf:
+        name: "{{ apps_packages | difference(apps_skip) | sort }}"
+        state: "{{ 'latest' if apps_upgrade else 'present' }}"
+        update_only: "{{ apps_upgrade }}"
+        allowerasing: true

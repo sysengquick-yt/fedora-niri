@@ -1,0 +1,4 @@
+- name: Import packages tasks
+  ansible.builtin.import_tasks: packages.yml
+  become: true
+  tags: [apps_packages]
