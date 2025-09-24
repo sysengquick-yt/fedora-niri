@@ -2,7 +2,7 @@
 - name: Create config directories
   ansible.builtin.file:
     state: directory
-    dest: "{{ niri_user.home }}/.config/{{ item }}"
+    dest: "{{ user_info.home }}/.config/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0755"
@@ -11,7 +11,7 @@
 - name: Copy config files
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ niri_user.home }}/.config/{{ item }}"
+    dest: "{{ user_info.home }}/.config/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0644"

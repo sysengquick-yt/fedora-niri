@@ -2,5 +2,6 @@
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     state: present
-  register: niri_user
+  register: user_info
   check_mode: true
+  tags: [always]

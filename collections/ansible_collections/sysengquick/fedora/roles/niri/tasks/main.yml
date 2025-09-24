@@ -14,10 +14,6 @@
       ansible.builtin.import_tasks: sddm.yml
       tags: [sddm]
 
-- name: Import user tasks
-  ansible.builtin.import_tasks: user.yml
-  tags: [always]
-
 - name: Import config tasks
   ansible.builtin.import_tasks: configs.yml
   tags: [configs]
