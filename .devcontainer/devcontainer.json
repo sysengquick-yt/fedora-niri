@@ -8,9 +8,12 @@
     "vscode": {
       "extensions": [
         "be5invis.toml",
+        "DavidAnson.vscode-markdownlint",
+        "eamodio.gitlens",
         "esbenp.prettier-vscode",
         "oderwat.indent-rainbow",
-        "redhat.ansible"
+        "redhat.ansible",
+        "yzhang.markdown-all-in-one"
       ],
       "settings": {
         "[json]": {
