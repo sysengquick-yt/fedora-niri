@@ -1,8 +1,15 @@
 ---
-- name: Import COPR tasks
-  ansible.builtin.import_tasks: copr.yml
-  tags: [copr]
+- name: Root tasks
+  become: true
+  block:
+    - name: Import COPR tasks
+      ansible.builtin.import_tasks: copr.yml
+      tags: [copr]
 
-- name: Import packages tasks
-  ansible.builtin.import_tasks: packages.yml
-  tags: [packages]
+    - name: Import packages tasks
+      ansible.builtin.import_tasks: packages.yml
+      tags: [packages]
+
+    - name: Import sddm tasks
+      ansible.builtin.import_tasks: sddm.yml
+      tags: [sddm]
