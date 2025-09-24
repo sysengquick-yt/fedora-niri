@@ -29,5 +29,10 @@ RUN echo ". /etc/bash_completion" >> /root/.bashrc
 COPY .devcontainer/prompt.sh /etc/profile.d/prompt.sh
 RUN echo ". /etc/profile.d/prompt.sh" >> /root/.bashrc
 
+# install ansible collections
+COPY collections/requirements.yml /tmp/
+RUN ansible-galaxy collection install -r /tmp/requirements.yml \
+  && rm -f /tmp/requirements.yml
+
 # use bash instead of python as our default command
 CMD ["/bin/bash"]
