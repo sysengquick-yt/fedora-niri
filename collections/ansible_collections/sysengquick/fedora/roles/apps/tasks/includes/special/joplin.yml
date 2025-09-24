@@ -1,0 +1,36 @@
+---
+- name: Tags block
+  tags: [apps_special_joplin]
+  block:
+    - name: Check is joplin is installed
+      ansible.builtin.stat:
+        path: "{{ user_info.home }}/.joplin/Joplin.AppImage"
+        get_checksum: false
+        get_attributes: false
+      register: apps_stat
+
+    - name: When block
+      vars:
+        installer: "{{ apps_tmpdir.path }}/install.sh"
+      when: not apps_stat.stat.exists or apps_upgrade
+      block:
+        - name: Create temp dir for joplin
+          ansible.builtin.tempfile:
+            state: directory
+          register: apps_tmpdir
+
+        - name: Fetch installer script for joplin
+          ansible.builtin.get_url:
+            url: https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh
+            dest: "{{ installer }}"
+            mode: "0755"
+
+        - name: Run install script for joplin
+          ansible.builtin.command:
+            cmd: "bash {{ installer }}"
+          changed_when: true
+      always:
+        - name: Remove tempdir for joplin
+          ansible.builtin.file:
+            state: absent
+            path: "{{ apps_tmpdir.path }}"
