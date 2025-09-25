@@ -10,9 +10,9 @@ niri_config_files:
 
 niri_packages:
   - niri
-  - blueman-applet
+  - blueman
   - mate-polkit
-  - nm-applet
+  - network-manager-applet
   - pasystray
   - sddm
   - sddm-themes
