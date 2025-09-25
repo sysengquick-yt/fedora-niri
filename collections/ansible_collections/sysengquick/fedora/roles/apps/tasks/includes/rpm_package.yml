@@ -11,10 +11,7 @@
         mode: "0644"
 
     - name: "Install RPM for {{ item.key }}"
-      ansible.builtin.command: "dnf install -y {{ rpm_file }}"
-      changed_when: true
-
-    # - name: "Install RPM for {{ item.key }}"
-    #   ansible.builtin.dnf:
-    #     name: "{{ rpm_file }}"
-    #     state: present
+      ansible.builtin.dnf:
+        name: "{{ rpm_file }}"
+        state: present
+        disable_gpg_check: true
