@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.2.1 - 2025-09-25
+
+- upgrade ansible-core to 2.17
+  - fixes bug with dnf module on RPM installation
+- switch to using dnf module for RPM package installs
+
 ## 1.2.0 - 2025-09-25
 
 - use a single temp dir for all special apps
