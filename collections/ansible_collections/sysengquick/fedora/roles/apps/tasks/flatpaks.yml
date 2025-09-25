@@ -17,4 +17,4 @@
     name: "{{ item }}"
     state: present
     method: user
-  loop: "{{ apps_flatpaks | difference(apps_skip) | sort }}"
+  loop: "{{ apps_flatpaks_final }}"
