@@ -6,7 +6,7 @@
   // "width": 1280, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": ["niri/workspaces", "niri/mode", "niri/scratchpad"],
+  "modules-left": ["niri/workspaces"],
   "modules-center": ["niri/window"],
   "modules-right": [
     "idle_inhibitor",
@@ -23,7 +23,7 @@
     "tray"
   ],
   // Modules configuration
-  // "niri/workspaces": {
+  // "sway/workspaces": {
   //     "disable-scroll": true,
   //     "all-outputs": true,
   //     "warp-on-scroll": false,
@@ -48,10 +48,10 @@
       "unlocked": ""
     }
   },
-  "niri/mode": {
+  "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
-  "niri/scratchpad": {
+  "sway/scratchpad": {
     "format": "{icon} {count}",
     "show-empty": false,
     "format-icons": ["", ""],
@@ -100,9 +100,21 @@
     // }
   },
   "clock": {
-    // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "format": "{:%d %b \uf133 | %I:%M %p}  ",
+    "format-alt": "{:%A, %B %d, %Y (%R)} \uf133 ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
   },
   "cpu": {
     "format": "{usage}% ",
