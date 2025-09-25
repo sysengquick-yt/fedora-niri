@@ -6,7 +6,6 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0755"
-  loop: "{{ niri_config_dirs }}"
 
 - name: Copy systemd service files
   ansible.builtin.copy:
@@ -15,7 +14,7 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0644"
-  notify: Sysengquick.fedora.niri systemctl user daemon-reload
+  notify: systemd_user_daemon_reload
   loop: "{{ niri_systemd_service_files }}"
 
 - name: Add niri.service wants # noqa: command-instead-of-module

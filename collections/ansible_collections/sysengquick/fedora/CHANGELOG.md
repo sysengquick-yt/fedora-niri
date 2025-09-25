@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.2.0 - 2025-09-25
+
+- use a single temp dir for all special apps
+- update the waybar config
+- use listener model for systemd daemon-reload handler
+- consolidate the niri install tasks
+- make the apps defaults more flexible
+  - allow add/remove to defaults or total replacement
+
 ## 1.1.0 - 2025-09-24
 
 - add additional vs code extension

@@ -1,4 +1,16 @@
 ---
-- name: Include special tasks
-  ansible.builtin.include_tasks: "includes/special/{{ item }}.yml"
-  loop: "{{ apps_special | difference(apps_skip) | sort }}"
+- name: Tmpdir block
+  block:
+    - name: Create special apps temp dir
+      ansible.builtin.tempfile:
+        state: directory
+      register: apps_tmpdir
+
+    - name: Include special tasks
+      ansible.builtin.include_tasks: "includes/special/{{ item }}.yml"
+      loop: "{{ apps_special_final }}"
+  always:
+    - name: Remove special apps tempdir
+      ansible.builtin.file:
+        state: absent
+        path: "{{ apps_tmpdir.path }}"

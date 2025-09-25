@@ -1,6 +1,0 @@
----
-- name: Setup niri COPR repo
-  community.general.copr:
-    host: copr.fedorainfracloud.org
-    state: enabled
-    name: yalter/niri

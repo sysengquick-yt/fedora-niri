@@ -1,4 +1,0 @@
----
-- name: Install niri packages
-  ansible.builtin.package:
-    name: "{{ niri_packages }}"

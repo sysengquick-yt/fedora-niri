@@ -1,3 +1,37 @@
 ---
+apps_flatpaks:
+  - com.obsproject.Studio
+apps_flatpaks_extra: []
+
+apps_packages:
+  - brave-browser
+  - btop
+  - chromium
+  - evolution-ews
+  - freerdp
+  - fuse-libs
+  - git
+  - kitty
+  - podman-compose
+  - podman-docker
+  - vim-default-editor
+apps_packages_extra: []
+
+apps_repos:
+  brave-browser: https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+apps_repos_extra: {}
+
+apps_rpms:
+  1password: https://downloads.1password.com/linux/rpm/stable/x86_64/1password-latest.rpm
+  code: https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64
+  zoom: https://zoom.us/client/latest/zoom_x86_64.rpm
+apps_rpms_extra: {}
+
 apps_skip: []
+
+apps_special:
+  - joplin
+  - uv
+apps_special_extra: []
+
 apps_upgrade: false

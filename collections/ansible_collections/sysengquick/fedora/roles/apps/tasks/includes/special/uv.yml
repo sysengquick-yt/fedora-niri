@@ -13,11 +13,6 @@
         uv_tarball: "{{ apps_tmpdir.path }}/uv.tar.gz"
       when: not apps_stat.stat.exists or apps_upgrade
       block:
-        - name: Create temp dir for uv
-          ansible.builtin.tempfile:
-            state: directory
-          register: apps_tmpdir
-
         - name: Get uv package info from GitHub API
           ansible.builtin.uri:
             url: https://api.github.com/repos/astral-sh/uv/releases/latest
@@ -45,8 +40,3 @@
             mode: "0755"
             remote_src: true
           become: true
-      always:
-        - name: Remove tempdir for uv
-          ansible.builtin.file:
-            state: absent
-            path: "{{ apps_tmpdir.path }}"

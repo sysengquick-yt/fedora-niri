@@ -1,28 +1,44 @@
 ---
-apps_flatpaks:
-  - com.obsproject.Studio
+# add extra flatpaks, removing apps_skip, and sort the result
+apps_flatpaks_final: |
+  {{
+    apps_flatpaks
+    | union(apps_flatpaks_extra)
+    | difference(apps_skip)
+    | sort
+  }}
 
-apps_packages:
-  - brave-browser
-  - btop
-  - chromium
-  - evolution-ews
-  - freerdp
-  - fuse-libs
-  - git
-  - kitty
-  - podman-compose
-  - podman-docker
-  - vim-default-editor
+apps_packages_final: |
+  {{
+    apps_packages
+    | union(apps_packages_extra)
+    | difference(apps_skip)
+    | sort
+  }}
 
-apps_repos:
-  brave-browser: https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+apps_repos_final: |
+  {{
+    apps_repos
+    | combine(apps_repos_extra)
+    | dict2items
+    | rejectattr('key', 'in', apps_skip)
+    | selectattr('key', 'in', apps_packages_final)
+    | sort(attribute='key')
+  }}
 
-apps_rpms:
-  1password: https://downloads.1password.com/linux/rpm/stable/x86_64/1password-latest.rpm
-  code: https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64
-  zoom: https://zoom.us/client/latest/zoom_x86_64.rpm
+apps_rpms_final: |
+  {{
+    apps_rpms
+    | combine(apps_rpms_extra)
+    | dict2items
+    | rejectattr('key', 'in', apps_skip)
+    | sort(attribute='key')
+  }}
 
-apps_special:
-  - joplin
-  - uv
+apps_special_final: |
+  {{
+    apps_special
+    | union(apps_special_extra)
+    | difference(apps_skip)
+    | sort
+  }}

@@ -2,17 +2,68 @@
 argument_specs:
   main:
     options:
+      apps_flatpaks:
+        type: list
+        elements: str
+        required: false
+        description: Default flatpaks to install
+      apps_flatpaks_extra:
+        type: list
+        elements: str
+        required: false
+        default: []
+        description: Extra flatpaks to install
+      apps_packages:
+        type: list
+        elements: str
+        required: false
+        description: Default repo packages to install
+      apps_packages_extra:
+        type: list
+        elements: str
+        required: false
+        default: []
+        description: Extra repo packages to install
+      apps_repos:
+        type: dict
+        required: false
+        description: Default rpm repos to add
+      apps_repos_extra:
+        type: dict
+        required: false
+        default: []
+        description: Extra rpm repos to add
+      apps_rpms:
+        type: dict
+        required: false
+        description: Default rpm packages to install
+      apps_rpms_extra:
+        type: dict
+        required: false
+        default: []
+        description: Extra rpm packages to install
       apps_skip:
         type: list
         elements: str
         required: false
         default: []
-        description: List of apps to skip installing
+        description: Apps to skip installing
+      apps_special:
+        type: list
+        elements: str
+        required: false
+        description: Default special apps to install
+      apps_special_extra:
+        type: list
+        elements: str
+        required: false
+        default: []
+        description: Extra special apps to install
       apps_upgrade:
         type: bool
         required: false
         default: false
-        description: Flag to force upgrade of apps
+        description: True to force app upgrades if already installed
 
 dependencies:
   - role: sysengquick.fedora.user

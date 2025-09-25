@@ -3,14 +3,14 @@
   block:
     - name: Install third-party repos
       ansible.builtin.get_url:
-        url: "{{ apps_repos[item] }}"
-        dest: "/etc/yum.repos.d/{{ item }}.repo"
+        url: "{{ item.value }}"
+        dest: "/etc/yum.repos.d/{{ item.key }}.repo"
         mode: "0644"
-      loop: "{{ apps_repos.keys() | difference(apps_skip) | sort }}"
+      loop: "{{ apps_repos_final }}"
 
     - name: Install packages
       ansible.builtin.dnf:
-        name: "{{ apps_packages | difference(apps_skip) | sort }}"
+        name: "{{ apps_packages_final }}"
         state: "{{ 'latest' if apps_upgrade else 'present' }}"
         update_only: "{{ apps_upgrade }}"
         allowerasing: true
@@ -28,7 +28,7 @@
 
     - name: Install RPM packages
       ansible.builtin.include_tasks: includes/rpm_package.yml
-      loop: "{{ apps_rpms.keys() | difference(apps_skip) | sort }}"
+      loop: "{{ apps_rpms_final }}"
   always:
     - name: Remove tempdir for RPM downloads
       ansible.builtin.file:

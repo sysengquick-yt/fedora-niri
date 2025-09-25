@@ -14,11 +14,6 @@
         installer: "{{ apps_tmpdir.path }}/install.sh"
       when: not apps_stat.stat.exists or apps_upgrade
       block:
-        - name: Create temp dir for joplin
-          ansible.builtin.tempfile:
-            state: directory
-          register: apps_tmpdir
-
         - name: Fetch installer script for joplin
           ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh
@@ -29,8 +24,3 @@
           ansible.builtin.command:
             cmd: "bash {{ installer }}"
           changed_when: true
-      always:
-        - name: Remove tempdir for joplin
-          ansible.builtin.file:
-            state: absent
-            path: "{{ apps_tmpdir.path }}"
