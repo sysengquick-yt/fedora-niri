@@ -1,0 +1,30 @@
+---
+- name: Setup niri COPR repo
+  community.general.copr:
+    host: copr.fedorainfracloud.org
+    state: enabled
+    name: yalter/niri
+  tags: [niri_install_copr]
+
+- name: Install niri packages
+  ansible.builtin.package:
+    name: "{{ niri_packages }}"
+    state: present
+  tags: [niri_install_packages]
+
+- name: Tags block
+  tags: [niri_install_sddm]
+  block:
+    - name: Configure sddm theme
+      ansible.builtin.copy:
+        src: sddm/theme.conf
+        dest: /etc/sddm.conf.d/theme.conf
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Enable graphical.target
+      ansible.builtin.systemd_service:
+        name: graphical.target
+        state: started
+        enabled: true

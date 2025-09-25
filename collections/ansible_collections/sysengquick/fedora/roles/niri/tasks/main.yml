@@ -1,18 +1,8 @@
 ---
-- name: Root tasks
+- name: Import install tasks
+  ansible.builtin.import_tasks: install.yml
   become: true
-  block:
-    - name: Import COPR tasks
-      ansible.builtin.import_tasks: copr.yml
-      tags: [niri_copr]
-
-    - name: Import packages tasks
-      ansible.builtin.import_tasks: packages.yml
-      tags: [niri_packages]
-
-    - name: Import sddm tasks
-      ansible.builtin.import_tasks: sddm.yml
-      tags: [niri_sddm]
+  tags: [niri_install]
 
 - name: Import config tasks
   ansible.builtin.import_tasks: configs.yml
