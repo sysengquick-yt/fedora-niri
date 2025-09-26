@@ -2,6 +2,15 @@
 argument_specs:
   main:
     options:
+      niri_overwrite_config_files:
+        type: bool
+        required: false
+        default: false
+        short_description: Whether to overwrite existing config files
+        description: |-
+          Flag to force overwriting of config files.
+
+          This does not affect templates which are always overwritten.
       niri_sddm_theme:
         type: str
         default: maldives

@@ -15,4 +15,5 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0644"
+    force: "{{ niri_overwrite_config_files }}"
   loop: "{{ niri_config_files }}"
