@@ -23,8 +23,10 @@
         group: root
         mode: "0644"
 
-    - name: Enable graphical.target
-      ansible.builtin.systemd_service:
-        name: graphical.target
-        state: started
-        enabled: true
+    - name: Switch default target to graphical.target
+      ansible.builtin.file:
+        src: /lib/systemd/system/graphical.target
+        dest: /etc/systemd/system/default.target
+        state: link
+        force: true
+      notify: start_sddm
