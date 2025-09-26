@@ -24,6 +24,7 @@
         owner: root
         group: root
         mode: "0644"
+        backup: true
 
     - name: Switch default target to graphical.target
       ansible.builtin.file:
