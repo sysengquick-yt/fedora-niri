@@ -1,3 +1,18 @@
 ---
 niri_sddm_theme: maldives
 niri_swaybg_image: /usr/share/backgrounds/f42/default/f42-01-day.jxl
+
+niri_swayidle_events:
+  # lock the screen before putting computer to sleep
+  before-sleep: swaylock -f
+
+niri_swayidle_timeout_monitors: 960
+niri_swayidle_timeout_screenlock: 900
+
+niri_swayidle_timeouts:
+  # lock screen after timeout screenlock
+  - seconds: "{{ niri_swayidle_timeout_screenlock }}"
+    command: swaylock -f
+  # turn monitors off after timeout montors
+  - seconds: "{{ niri_swayidle_timeout_monitors }}"
+    command: niri msg action power-off-monitors
