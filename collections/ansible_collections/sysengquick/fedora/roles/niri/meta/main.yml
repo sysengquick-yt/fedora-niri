@@ -1,3 +1,12 @@
 ---
+argument_specs:
+  main:
+    options:
+      niri_sddm_theme:
+        type: str
+        default: maldives
+        required: false
+        description: Which SDDM theme to use
+
 dependencies:
   - role: sysengquick.fedora.user

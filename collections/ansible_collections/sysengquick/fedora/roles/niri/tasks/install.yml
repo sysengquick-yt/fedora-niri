@@ -17,7 +17,9 @@
   block:
     - name: Configure sddm theme
       ansible.builtin.copy:
-        src: sddm/theme.conf
+        content: |
+          [Theme]
+          Current={{ niri_sddm_theme }}
         dest: /etc/sddm.conf.d/theme.conf
         owner: root
         group: root
