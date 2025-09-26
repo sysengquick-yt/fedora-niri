@@ -2,11 +2,15 @@
 niri_config_dirs:
   - niri
   - waybar
+  - swaylock
 
 niri_config_files:
   - niri/config.kdl
   - waybar/config.jsonc
   - waybar/style.css
+
+niri_config_templates:
+  - swaylock/config
 
 niri_packages:
   - niri
@@ -27,3 +31,14 @@ niri_systemd_service_templates:
   - systemd/user/mate-polkit.service
   - systemd/user/swaybg.service
   - systemd/user/swayidle.service
+
+niri_swaylock_options_final: |
+  {{
+    (
+      niri_swaylock_options
+      | combine(niri_swaylock_options_extra)
+    )
+    | dict2items
+    | rejectattr('key', 'in', niri_swaylock_options_skip)
+    | items2dict
+  }}

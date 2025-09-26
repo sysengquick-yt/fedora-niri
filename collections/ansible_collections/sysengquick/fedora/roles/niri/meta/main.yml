@@ -74,6 +74,21 @@ argument_specs:
             type: str
             required: false
             description: Command to run after activity post timeout
+      niri_swaylock_options:
+        type: dict
+        required: false
+        description: Default options for swaylock
+      niri_swaylock_options_extra:
+        type: dict
+        required: false
+        default: {}
+        description: Extra options for swaylock
+      niri_swaylock_options_skip:
+        type: list
+        elements: str
+        default: []
+        required: false
+        description: Options to remove from the swaylock defaults
 
 dependencies:
   - role: sysengquick.fedora.user

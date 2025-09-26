@@ -18,3 +18,10 @@ niri_swayidle_timeouts:
   # turn monitors off after timeout montors
   - seconds: "{{ niri_swayidle_timeout_monitors }}"
     command: niri msg action power-off-monitors
+
+niri_swaylock_options:
+  color: 1e1e1e
+  ignore-empty-passwords: ~
+  show-failed-attempts: ~
+niri_swaylock_options_extra: {}
+niri_swaylock_options_skip: []
