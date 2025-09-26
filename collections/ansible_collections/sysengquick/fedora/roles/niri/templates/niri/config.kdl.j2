@@ -1,0 +1,57 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+
+// Check the wiki for a full description of the configuration:
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+environment {
+{% for k,v in niri_kdl_environment | dictsort %}
+    {{ k }} "{{ v }}"
+{% endfor %}
+}
+
+// begin outputs
+{% for k,v in niri_kdl_outputs | dictsort %}
+output "{{ k }}" {
+{{ v | indent(4, first=True) }}
+}
+{% endfor %}
+// end outputs
+
+// begin layout and window rules
+{% for rule in niri_kdl_layout_rules %}
+layout-rule {
+{{ rule | indent(4, first=True) }}
+}
+{% endfor %}
+{% for rule in niri_kdl_window_rules %}
+window-rule {
+{{ rule | indent(4, first=True) }}
+}
+{% endfor %}
+// end layout and window rules
+
+{{ 'prefer-no-csd' if niri_kdl_prefer_no_csd else '// prefer-no-csd' }}
+screenshot-path {{ niri_kdl_screenshot_path | tojson if niri_kdl_screenshot_path else 'null' }}
+
+// begin startup apps
+{% for app in niri_kdl_spawn_at_startup | sort %}
+spawn-at-startup "{{ app }}"
+{% endfor %}
+{% for app in niri_kdl_spawn_sh_at_startup | sort %}
+spawn-sh-at-startup "{{ app }}"
+{% endfor %}
+// end startup apps
+
+binds {
+{{ niri_kdl_binds_final | indent(4, first=True) }}
+}
+{% for section in niri_kdl_sections %}
+
+{% set contents = vars['niri_kdl_' + (section | replace('-', '_'))] %}
+{{ '' if contents else '/-' }}{{ section }} {
+{% if contents %}
+{{ contents | indent(4, first=True) }}
+{% endif %}
+}
+{% endfor %}
