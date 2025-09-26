@@ -7,6 +7,11 @@ argument_specs:
         default: maldives
         required: false
         description: Which SDDM theme to use
+      niri_swaybg_image:
+        type: str
+        default: /usr/share/backgrounds/f42/default/f42-01-day.jxl
+        required: false
+        description: Which background image file to display on the desktop
 
 dependencies:
   - role: sysengquick.fedora.user

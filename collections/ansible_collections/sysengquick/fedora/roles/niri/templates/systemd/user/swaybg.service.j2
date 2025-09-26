@@ -4,5 +4,5 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/swaybg -m fill -i "/usr/share/backgrounds/f42/default/f42-01-day.jxl"
+ExecStart=/usr/bin/swaybg -m fill -i {{ niri_swaybg_image | quote }}
 Restart=on-failure

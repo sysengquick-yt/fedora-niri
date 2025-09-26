@@ -7,15 +7,15 @@
     group: "{{ ansible_user }}"
     mode: "0755"
 
-- name: Copy systemd service files
-  ansible.builtin.copy:
-    src: "{{ item }}"
+- name: Template systemd service files
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
     dest: "{{ user_info.home }}/.config/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0644"
   notify: systemd_user_daemon_reload
-  loop: "{{ niri_systemd_service_files }}"
+  loop: "{{ niri_systemd_service_templates }}"
 
 - name: Add niri.service wants # noqa: command-instead-of-module
   ansible.builtin.command:

@@ -23,7 +23,7 @@ niri_service_wants:
   - swaybg.service
   - swayidle.service
 
-niri_systemd_service_files:
+niri_systemd_service_templates:
   - systemd/user/mate-polkit.service
   - systemd/user/swaybg.service
   - systemd/user/swayidle.service
