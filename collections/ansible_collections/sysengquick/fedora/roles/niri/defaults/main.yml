@@ -4,7 +4,7 @@ niri_kdl_animations: ~
 niri_kdl_binds: |-
   Mod+Shift+Slash { show-hotkey-overlay; }
 
-  Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+  Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
   Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
@@ -150,16 +150,11 @@ niri_kdl_binds: |-
 niri_kdl_binds_extra: {}
 niri_kdl_binds_skip: []
 
-niri_kdl_clipboard: |-
-  disable-primary
-
+niri_kdl_clipboard: ~
 niri_kdl_config_notification: ~
 niri_kdl_cursor: ~
 niri_kdl_debug: ~
-
-niri_kdl_environment:
-  ELECTRON_OZONE_PLATFORM_HINT: auto
-
+niri_kdl_environment: {}
 niri_kdl_gestures: ~
 
 niri_kdl_hotkey_overlay: |-
