@@ -1,0 +1,10 @@
+---
+apps_packages:
+  - btop
+  - chromium
+  - git
+  - vim-default-editor
+
+apps_skip:
+  - 1password
+  - zoom

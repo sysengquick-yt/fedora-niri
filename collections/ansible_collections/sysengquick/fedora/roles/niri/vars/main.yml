@@ -63,10 +63,10 @@ niri_polkit_agents:
     exec: /usr/libexec/xfce-polkit
 
 niri_service_wants:
-  - waybar.service
   - niri-polkit.service
   - swaybg.service
   - swayidle.service
+  - waybar.service
 
 niri_systemd_service_templates:
   - systemd/user/niri-polkit.service

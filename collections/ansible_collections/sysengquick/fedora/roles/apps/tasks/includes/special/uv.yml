@@ -13,6 +13,12 @@
         uv_tarball: "{{ apps_tmpdir.path }}/uv.tar.gz"
       when: not apps_stat.stat.exists or apps_upgrade
       block:
+        - name: Install required packages to extract archive
+          ansible.builtin.package:
+            name: tar
+            state: present
+          become: true
+
         - name: Get uv package info from GitHub API
           ansible.builtin.uri:
             url: https://api.github.com/repos/astral-sh/uv/releases/latest

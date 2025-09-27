@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.3.1 - 2025-09-27
+
+- move role defaults to inventory
+- clean up minor role issues
+- fix required packages for joplin and uv special apps
+
 ## 1.3.0 - 2025-09-26
 
 - add graphical policykit for niri

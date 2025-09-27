@@ -4,64 +4,57 @@ argument_specs:
     options:
       apps_flatpaks:
         type: list
-        elements: str
-        required: false
+        default: []
         description: Default flatpaks to install
+        elements: str
       apps_flatpaks_extra:
         type: list
-        elements: str
-        required: false
         default: []
         description: Extra flatpaks to install
+        elements: str
       apps_packages:
         type: list
-        elements: str
-        required: false
+        default: []
         description: Default repo packages to install
+        elements: str
       apps_packages_extra:
         type: list
-        elements: str
-        required: false
         default: []
         description: Extra repo packages to install
+        elements: str
       apps_repos:
         type: dict
-        required: false
+        default: {}
         description: Default rpm repos to add
       apps_repos_extra:
         type: dict
-        required: false
-        default: []
+        default: {}
         description: Extra rpm repos to add
       apps_rpms:
         type: dict
-        required: false
+        default: {}
         description: Default rpm packages to install
       apps_rpms_extra:
         type: dict
-        required: false
-        default: []
+        default: {}
         description: Extra rpm packages to install
       apps_skip:
         type: list
-        elements: str
-        required: false
         default: []
         description: Apps to skip installing
+        elements: str
       apps_special:
         type: list
-        elements: str
-        required: false
+        default: []
         description: Default special apps to install
+        elements: str
       apps_special_extra:
         type: list
-        elements: str
-        required: false
         default: []
         description: Extra special apps to install
+        elements: str
       apps_upgrade:
         type: bool
-        required: false
         default: false
         description: True to force app upgrades if already installed
 
