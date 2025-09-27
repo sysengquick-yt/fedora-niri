@@ -15,4 +15,16 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0644"
+    backup: true
+    force: "{{ niri_overwrite_config_files }}"
   loop: "{{ niri_config_files }}"
+
+- name: Template niri configs
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ user_info.home }}/.config/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+    backup: true
+  loop: "{{ niri_config_templates }}"

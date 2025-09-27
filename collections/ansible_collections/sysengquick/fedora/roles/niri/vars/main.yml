@@ -2,25 +2,84 @@
 niri_config_dirs:
   - niri
   - waybar
+  - swaylock
 
 niri_config_files:
-  - niri/config.kdl
   - waybar/config.jsonc
   - waybar/style.css
 
+niri_config_templates:
+  - niri/config.kdl
+  - swaylock/config
+
+# noqa jinja[spacing]
+niri_kdl_binds_final: |-
+  {% set result = {} %}
+  {% for line in niri_kdl_binds.split('\n') | map('trim') | select() %}
+    {%- set parts = line.split(' ', 1) %}
+    {%- set _ = result.update({parts[0]: parts[1]}) %}
+  {% endfor %}
+  {% for item in (result | combine(niri_kdl_binds_extra)) | dict2items | rejectattr('key', 'in', niri_kdl_binds_skip) %}
+  {{ item.key }} {{ item.value }}
+  {% endfor %}
+
+niri_kdl_sections:
+  - animations
+  - clipboard
+  - config-notification
+  - cursor
+  - debug
+  - gestures
+  - hotkey-overlay
+  - input
+  - layout
+  - overview
+  - switch-events
+  - xwayland-satellite
+
 niri_packages:
   - niri
-  - blueman-applet
-  - nm-applet
+  - blueman
+  - network-manager-applet
   - pasystray
   - sddm
   - sddm-themes
 
+niri_polkit_agents:
+  kde:
+    packages: ["polkit-kde", "kf6-kirigami"]
+    exec: /usr/libexec/kf6/polkit-kde-authentication-agent-1
+  lxqt:
+    packages: ["lxqt-policykit"]
+    exec: /usr/libexec/lxqt-policykit-agent
+  lxde:
+    packages: ["lxpolkit"]
+    exec: /usr/bin/lxpolkit
+  mate:
+    packages: ["mate-polkit"]
+    exec: /usr/libexec/polkit-mate-authentication-agent-1
+  xfce:
+    packages: ["xfce-polkit"]
+    exec: /usr/libexec/xfce-polkit
+
 niri_service_wants:
   - waybar.service
+  - niri-polkit.service
   - swaybg.service
   - swayidle.service
 
-niri_systemd_service_files:
+niri_systemd_service_templates:
+  - systemd/user/niri-polkit.service
   - systemd/user/swaybg.service
   - systemd/user/swayidle.service
+
+niri_swaylock_options_final: |
+  {{
+    (
+      niri_swaylock_options
+      | combine(niri_swaylock_options_extra)
+    )
+    | dict2items
+    | rejectattr('key', 'in', niri_swaylock_options_skip)
+    | items2dict
+  }}

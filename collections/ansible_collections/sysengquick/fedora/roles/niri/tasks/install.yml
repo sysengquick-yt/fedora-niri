@@ -8,7 +8,7 @@
 
 - name: Install niri packages
   ansible.builtin.package:
-    name: "{{ niri_packages }}"
+    name: "{{ niri_packages + niri_polkit_agents[niri_polkit_agent].packages }}"
     state: present
   tags: [niri_install_packages]
 
@@ -17,14 +17,19 @@
   block:
     - name: Configure sddm theme
       ansible.builtin.copy:
-        src: sddm/theme.conf
+        content: |
+          [Theme]
+          Current={{ niri_sddm_theme }}
         dest: /etc/sddm.conf.d/theme.conf
         owner: root
         group: root
         mode: "0644"
+        backup: true
 
-    - name: Enable graphical.target
-      ansible.builtin.systemd_service:
-        name: graphical.target
-        state: started
-        enabled: true
+    - name: Switch default target to graphical.target
+      ansible.builtin.file:
+        src: /lib/systemd/system/graphical.target
+        dest: /etc/systemd/system/default.target
+        state: link
+        force: true
+      notify: start_sddm

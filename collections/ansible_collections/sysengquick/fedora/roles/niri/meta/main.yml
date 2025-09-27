@@ -1,3 +1,207 @@
 ---
+argument_specs:
+  main:
+    options:
+      niri_kdl_animations:
+        type: str
+        required: false
+        description: Animation configuration block for niri
+      niri_kdl_binds:
+        type: str
+        required: false
+        description: Default key binding configuration block for niri
+      niri_kdl_binds_extra:
+        type: dict
+        required: false
+        default: {}
+        description: Extra key bindings to add/override
+      niri_kdl_binds_skip:
+        type: list
+        elements: str
+        required: false
+        default: []
+        description: Keybinds to remove from defaults
+      niri_kdl_clipboard:
+        type: str
+        required: false
+        description: Clipboard configuration block for niri
+      niri_kdl_config_notification:
+        type: str
+        required: false
+        description: Config notification settings for niri
+      niri_kdl_cursor:
+        type: str
+        required: false
+        description: Cursor configuration block for niri
+      niri_kdl_debug:
+        type: str
+        required: false
+        description: Debug configuration block for niri
+      niri_kdl_environment:
+        type: dict
+        required: false
+        description: Environment variables to set for niri session
+      niri_kdl_gestures:
+        type: str
+        required: false
+        description: Gesture configuration block for niri
+      niri_kdl_hotkey_overlay:
+        type: str
+        required: false
+        description: Hotkey overlay configuration block for niri
+      niri_kdl_input:
+        type: str
+        required: false
+        description: Input device configuration block for niri
+      niri_kdl_layout:
+        type: str
+        required: false
+        description: Layout configuration block for niri
+      niri_kdl_layout_rules:
+        type: list
+        elements: str
+        required: false
+        description: List of layout rules for niri
+      niri_kdl_outputs:
+        type: dict
+        required: false
+        short_description: Display output configurations
+        description: |
+          Configure individual displays and monitors.
+
+          Dictionary where keys are output names (eDP-1, HDMI-A-1, Virtual-1, etc.)
+          and values are niri configuration blocks for that output's settings like
+          resolution, position, scale, transform, etc.
+      niri_kdl_overview:
+        type: str
+        required: false
+        description: Overview configuration block for niri
+      niri_kdl_prefer_no_csd:
+        type: bool
+        required: false
+        default: true
+        description: Whether to prefer no client-side decorations
+      niri_kdl_screenshot_path:
+        type: str
+        required: false
+        default: "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+        description: Path template for screenshots
+      niri_kdl_spawn_at_startup:
+        type: list
+        elements: str
+        required: false
+        description: List of commands to spawn at niri startup
+      niri_kdl_spawn_sh_at_startup:
+        type: list
+        elements: str
+        required: false
+        description: List of shell commands to spawn at niri startup
+      niri_kdl_switch_events:
+        type: str
+        required: false
+        description: Switch event configuration block for niri
+      niri_kdl_window_rules:
+        type: list
+        elements: str
+        required: false
+        description: List of window rules for niri
+      niri_kdl_xwayland_satellite:
+        type: str
+        required: false
+        description: Xwayland satellite configuration block for niri
+      niri_overwrite_config_files:
+        type: bool
+        required: false
+        default: false
+        short_description: Whether to overwrite existing config files
+        description: |-
+          Flag to force overwriting of config files.
+
+          This does not affect templates which are always overwritten.
+      niri_polkit_agent:
+        type: str
+        required: false
+        default: mate
+        choices: [kde, lxqt, lxde, mate, xfce]
+        description: Which graphical policykit agent to use
+      niri_sddm_theme:
+        type: str
+        default: maldives
+        required: false
+        description: Which SDDM theme to use
+      niri_swaybg_image:
+        type: str
+        default: /usr/share/backgrounds/f42/default/f42-01-day.jxl
+        required: false
+        description: Which background image file to display on the desktop
+      niri_swayidle_events:
+        type: dict
+        required: false
+        description: Which events to handle with swayidle
+        options:
+          after-resume:
+            type: str
+            required: false
+            description: Commands to run after system resumes from sleep
+          before-sleep:
+            type: str
+            required: false
+            description: Commands to run before system goes to sleep
+          idlehint:
+            type: int
+            required: false
+            description: Set IdleHint timeout
+          lock:
+            type: str
+            required: false
+            description: Command to run when logind is locked
+          unlock:
+            type: str
+            required: false
+            description: Command to run when logind is unlocked
+      niri_swayidle_timeout_monitors:
+        type: int
+        required: false
+        default: 960
+        description: Timeout to turn the monitors off in seconds
+      niri_swayidle_timeout_screenlock:
+        type: int
+        required: false
+        default: 900
+        description: Timeout to lock the screen in seconds
+      niri_swayidle_timeouts:
+        type: list
+        required: false
+        description: Sway idle timeout arguments
+        elements: dict
+        options:
+          seconds:
+            type: int
+            required: true
+            description: Number of seconds for the timeout event
+          command:
+            type: str
+            required: true
+            description: Command to run when timeout is triggered
+          resume:
+            type: str
+            required: false
+            description: Command to run after activity post timeout
+      niri_swaylock_options:
+        type: dict
+        required: false
+        description: Default options for swaylock
+      niri_swaylock_options_extra:
+        type: dict
+        required: false
+        default: {}
+        description: Extra options for swaylock
+      niri_swaylock_options_skip:
+        type: list
+        elements: str
+        default: []
+        required: false
+        description: Options to remove from the swaylock defaults
+
 dependencies:
   - role: sysengquick.fedora.user
