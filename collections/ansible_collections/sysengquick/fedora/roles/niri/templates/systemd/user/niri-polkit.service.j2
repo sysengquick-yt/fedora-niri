@@ -4,5 +4,5 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/libexec/polkit-mate-authentication-agent-1
+ExecStart={{ niri_polkit_agents[niri_polkit_agent].exec }}
 Restart=on-failure

@@ -8,7 +8,7 @@
 
 - name: Install niri packages
   ansible.builtin.package:
-    name: "{{ niri_packages }}"
+    name: "{{ niri_packages + niri_polkit_agents[niri_polkit_agent].packages }}"
     state: present
   tags: [niri_install_packages]
 

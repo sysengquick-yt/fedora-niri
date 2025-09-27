@@ -118,6 +118,12 @@ argument_specs:
           Flag to force overwriting of config files.
 
           This does not affect templates which are always overwritten.
+      niri_polkit_agent:
+        type: str
+        required: false
+        default: mate
+        choices: [kde, lxqt, lxde, mate, xfce]
+        description: Which graphical policykit agent to use
       niri_sddm_theme:
         type: str
         default: maldives

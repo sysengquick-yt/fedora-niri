@@ -40,20 +40,36 @@ niri_kdl_sections:
 niri_packages:
   - niri
   - blueman
-  - mate-polkit
   - network-manager-applet
   - pasystray
   - sddm
   - sddm-themes
 
+niri_polkit_agents:
+  kde:
+    packages: ["polkit-kde", "kf6-kirigami"]
+    exec: /usr/libexec/kf6/polkit-kde-authentication-agent-1
+  lxqt:
+    packages: ["lxqt-policykit"]
+    exec: /usr/libexec/lxqt-policykit-agent
+  lxde:
+    packages: ["lxpolkit"]
+    exec: /usr/bin/lxpolkit
+  mate:
+    packages: ["mate-polkit"]
+    exec: /usr/libexec/polkit-mate-authentication-agent-1
+  xfce:
+    packages: ["xfce-polkit"]
+    exec: /usr/libexec/xfce-polkit
+
 niri_service_wants:
   - waybar.service
-  - mate-polkit.service
+  - niri-polkit.service
   - swaybg.service
   - swayidle.service
 
 niri_systemd_service_templates:
-  - systemd/user/mate-polkit.service
+  - systemd/user/niri-polkit.service
   - systemd/user/swaybg.service
   - systemd/user/swayidle.service
 
