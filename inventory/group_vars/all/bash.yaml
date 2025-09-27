@@ -1,0 +1,83 @@
+---
+_bash_aliases:
+  backup_ls: find . -type f -name '*~'
+  backup_rm: find . -type f -name '*~' -delete
+  fix_perms: find . \( -type f -exec chmod 644 {} + \) -o \( -type d -exec chmod 755 {} + \)
+  ipt: sudo iptables --line-numbers -nvL
+  ip6t: sudo ip6tables --line-numbers -nvL
+  ssh_kill: pkill -f .ssh/cp-$(whoami)@
+
+  # display names of all bash functions, like alias does for aliases
+  fcns: compgen -A function | grep -v '^_'
+
+bash_aliases: |
+  {{
+    bash_aliases_presets
+    | default({})
+    | combine(_bash_aliases)
+  }}
+
+bash_environment:
+  EDITOR: vim
+  HISTCONTROL: ignoreboth
+  HISTTIMEFORMAT: "[%F %T] "
+  HISTSIZE: &bash_history_size 9999
+  HISTFILESIZE: *bash_history_size
+  LC_ALL: &bash_locale en_US.UTF-8
+  LANG: *bash_locale
+  PAGER: less -X
+  PROMPT_DIRTRIM: 4
+
+bash_history_options: [histappend, histverify]
+
+bash_functions:
+  ssl_cert_expire: |-
+    timeout 10 openssl s_client -servername $1 -connect $1:443 -showcerts </dev/null 2>/dev/null \
+    | openssl x509 -noout -dates 2>/dev/null || echo "Failed to retrieve certificate for $1"
+
+bash_prompt: |-
+  __bash_prompt() {
+      local last_exit_code=$?
+
+      # Colors
+      local green='\[\033[32m\]'
+      local red='\[\033[1;31m\]'
+      local blue='\[\033[1;34m\]'
+      local yellow='\[\033[33m\]'
+      local cyan='\[\033[36m\]'
+      local reset='\[\033[0m\]'
+
+      # Virtual environment in cyan
+      local venv=""
+      if [[ -n "$VIRTUAL_ENV" ]]; then
+          venv="${cyan}($(basename $VIRTUAL_ENV)) ${reset}"
+      fi
+
+      # Username in green
+      local username="${green}\u${reset}"
+
+      # Arrow and error display
+      local arrow="➜"
+      local error_display=""
+
+      if [[ $last_exit_code -ne 0 ]]; then
+          arrow="${red}➜${reset}"
+          error_display="${red}[${last_exit_code}]${reset} "
+      fi
+
+      # Current path in blue
+      local path="${blue}\w${reset}"
+
+      # Git branch in yellow (if exists)
+      local git_branch
+      git_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+      if [[ -n "$git_branch" ]]; then
+          git_branch="${yellow} (${git_branch})${reset}"
+      fi
+
+      # create full prompt
+      PS1="${error_display}${venv}${username} ${arrow} ${path}${git_branch} $ "
+  }
+  PROMPT_COMMAND=__bash_prompt
+
+bash_shell_options: ["vi"]

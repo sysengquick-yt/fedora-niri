@@ -1,0 +1,4 @@
+---
+dotfiles_bash: true
+dotfiles_git: true
+dotfiles_ssh: true
