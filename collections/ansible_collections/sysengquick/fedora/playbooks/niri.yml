@@ -7,3 +7,5 @@
       tags: [niri]
     - role: sysengquick.fedora.apps
       tags: [apps]
+    - role: sysengquick.fedora.dotfiles
+      tags: [dotfiles]
