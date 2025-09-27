@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 1.3.0 - 2025-09-26
+
+- add graphical policykit for niri
+  - allow choice of lxde, lxqt, kde, mate, and xfce with niri_polkit_agent (default: mate)
+- fix niri package names (how did this work in the Gnome install?)
+  - nm-applet -> network-manager-applet
+  - blueman-applet -> blueman
+- fix graphical.target and sddm on boot
+- add niri config customization
+  - sddm theme
+  - swaybg image
+  - swayidle config
+  - swaylock
+  - niri config.kdl
+- don't overwrite config files by default
+  - add niri_overwrite_config_files option to change this
+- backup files that are being copied/templated
+- move inventory to directory
+  - add host_vars for fedora-niri-ks host
+
 ## 1.2.1 - 2025-09-25
 
 - upgrade ansible-core to 2.17
