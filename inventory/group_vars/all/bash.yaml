@@ -1,0 +1,16 @@
+---
+bash_aliases_extra:
+  del_backups: find . -type f -name '*~' -exec rm {} +
+  fix_perms: find . -type f -exec chmod 644 {} \; ; find . -type d -exec chmod 755 {} \;
+  ipt: sudo iptables --line-numbers -nvL
+  ip6t: sudo ip6tables --line-numbers -nvL
+  ssh_kill: pkill -f .ssh/cp-$(whoami)@
+
+bash_environment_extra:
+  EDITOR: vim
+
+bash_functions_extra:
+  ssh_cert_expire: |-
+    openssl s_client -showcerts -connect $1:443 2>/dev/null </dev/null \
+    | awk '/BEGIN CERTIFICATE/ {p=1}; p==1; /END CERTIFICATE/ {p=0}' \
+    | openssl x509 -text -noout | grep 'Not'
