@@ -11,6 +11,7 @@
         "DavidAnson.vscode-markdownlint",
         "eamodio.gitlens",
         "esbenp.prettier-vscode",
+        "mhutchie.git-graph",
         "oderwat.indent-rainbow",
         "redhat.ansible",
         "yzhang.markdown-all-in-one"
