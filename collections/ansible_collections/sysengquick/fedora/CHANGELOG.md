@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.4.0 - 2025-09-27
+
+- support custom files for niri configs (e.g. waybar)
+- restore original waybar config as default
+- add custom waybar config to inventory
+- add tailscale special app installer
+
 ## 1.3.1 - 2025-09-27
 
 - move role defaults to inventory

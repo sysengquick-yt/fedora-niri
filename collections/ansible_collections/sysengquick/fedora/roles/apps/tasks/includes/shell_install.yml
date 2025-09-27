@@ -1,0 +1,16 @@
+---
+- name: Vars block
+  vars:
+    apps_installer: "{{ apps_tmpdir.path }}/install.sh"
+  block:
+    - name: "Fetch install script for {{ item }}"
+      ansible.builtin.get_url:
+        url: "{{ apps_url }}"
+        dest: "{{ apps_installer }}"
+        mode: "0755"
+
+    - name: "Run install script for {{ item }}"
+      ansible.builtin.command:
+        cmd: "{{ apps_shell | default('/bin/sh') }} {{ apps_installer }}"
+      become: "{{ apps_become | default(false) }}"
+      changed_when: true

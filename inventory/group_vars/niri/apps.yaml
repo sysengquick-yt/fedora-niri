@@ -19,6 +19,9 @@ apps_rpms:
   code: https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64
   zoom: https://zoom.us/client/latest/zoom_x86_64.rpm
 
+# add apps_special_tailscale_authkey if you want to start the tailnet
+# do not place this in git -- it's a password!
 apps_special:
   - joplin
+  - tailscale
   - uv
