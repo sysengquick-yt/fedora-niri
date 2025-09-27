@@ -1,0 +1,9 @@
+---
+# use vs code as git editor
+git_sections_extra:
+  core: |-
+    editor = code --wait
+  diff: |-
+    tool = default-difftool
+  'diff "default-difftool"': |-
+    cmd = code --wait --diff $LOCAL $REMOTE
