@@ -44,7 +44,7 @@ spawn-sh-at-startup "{{ app }}"
 // end startup apps
 
 binds {
-{{ niri_kdl_binds_final | indent(4, first=True) }}
+{{ niri_kdl_binds_final | trim | indent(4, first=True) }}
 }
 {% for section in niri_kdl_sections %}
 
