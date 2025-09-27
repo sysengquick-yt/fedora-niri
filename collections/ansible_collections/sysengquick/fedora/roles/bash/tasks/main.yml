@@ -1,0 +1,10 @@
+---
+- name: Template bash config files
+  ansible.builtin.template:
+    src: "{{ item }}.sh.j2"
+    dest: "{{ user_info.home }}/.{{ item }}"
+    backup: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  loop: "{{ bash_templates }}"

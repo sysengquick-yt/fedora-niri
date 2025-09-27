@@ -1,0 +1,60 @@
+# THIS FILE WAS CREATED BY ANSIBLE | LOCAL CHANGES MAY BE OVERWRITTEN
+# ansible template: sysengquick.fedora.bash/templates/bashrc.sh.j2
+
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+{% set user_paths = bash_paths_final | join(':') %}
+if ! [[ "$PATH" =~ "{{ user_paths }}:" ]]; then
+    PATH="{{ user_paths }}:$PATH"
+fi
+export PATH
+
+{{ bash_prompt }}
+
+# begin bash history options
+{% for option in bash_history_options %}
+shopt -s {{ option }}
+{% endfor %}
+# end bash history options
+
+# begin environment vars
+{% for item in bash_environment_final %}
+export {{ item.key }}={{ item.value | quote }}
+{% endfor %}
+# end environment vars
+
+# begin bash functions
+{% for item in bash_functions_final %}
+function {{ item.key }} {
+{{ item.value | indent(4, first=True) }}
+}
+{% endfor %}
+# end bash functions
+
+# begin bash aliases
+{% for item in bash_aliases_final %}
+alias {{ item.key }}={{ item.value | quote }}
+{% endfor %}
+# end bash aliases
+
+# begin bash sourced files
+{% for source in bash_sources_final %}
+[ -f {{ source }} ] && . {{ source | quote }}
+{% endfor %}
+# end bash sourced files
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc

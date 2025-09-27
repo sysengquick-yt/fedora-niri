@@ -1,0 +1,46 @@
+---
+bash_aliases_final: |
+  {{
+    bash_aliases
+    | combine(bash_aliases_extra)
+    | dict2items
+    | rejectattr('key', 'in', bash_aliases_skip)
+    | sort(attribute='key')
+  }}
+
+bash_environment_final: |
+  {{
+    bash_environment
+    | combine(bash_environment_extra)
+    | dict2items
+    | rejectattr('key', 'in', bash_environment_skip)
+    | sort(attribute='key')
+  }}
+
+bash_functions_final: |
+  {{
+    bash_functions
+    | combine(bash_functions_extra)
+    | dict2items
+    | rejectattr('key', 'in', bash_functions_skip)
+    | sort(attribute='key')
+  }}
+
+bash_paths_final: |
+  {{
+    bash_paths
+    | union(bash_paths_extra)
+    | difference(bash_paths_skip)
+  }}
+
+bash_sources_final: |
+  {{
+    bash_sources
+    | union(bash_sources_extra)
+    | difference(bash_sources_skip)
+    | sort
+  }}
+
+bash_templates:
+  - bash_profile
+  - bashrc
