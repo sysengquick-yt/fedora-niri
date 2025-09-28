@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.5.0 - 2025-09-27
+
+- rename collection to sysengquick.unix
+- add ssh, gitconfig, and bash config templatating
+- allow overriding hosts in the niri playbok
+- fix issue in boolean handling
+  - passing as extra_vars could change the type to str and always be true
+
 ## 1.4.0 - 2025-09-27
 
 - support custom files for niri configs (e.g. waybar)
