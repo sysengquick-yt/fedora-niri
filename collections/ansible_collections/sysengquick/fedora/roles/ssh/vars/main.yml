@@ -1,0 +1,29 @@
+---
+ssh_authorized_keys_final: |
+  {{
+    ssh_authorized_keys
+    | union(ssh_authorized_keys_extra)
+    | difference(ssh_authorized_keys_skip)
+    | sort
+  }}
+
+ssh_common_options_final: |
+  {{
+    ssh_common_options
+    | combine(ssh_common_options_extra)
+    | dict2items
+    | rejectattr('key', 'in', ssh_common_options_skip)
+    | sort(attribute='key')
+    | items2dict
+  }}
+
+ssh_config_templates: [config, authorized_keys]
+
+ssh_identity_keys_final: |
+  {{
+    ssh_identity_keys
+    | combine(ssh_identity_keys_extra)
+    | dict2items
+    | rejectattr('key', 'in', ssh_identity_keys_skip)
+    | sort(attribute='key')
+  }}

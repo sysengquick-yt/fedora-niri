@@ -1,0 +1,46 @@
+{##############################################################################}
+{# returns dictionary of merged base/extra options filtering out keys from each pattern in skip_options #}
+{% macro merge_options(base_options, extra_options, skip_options) %}
+{# merge base and extra options recursively #}
+{% set merged = base_options | combine(extra_options, recursive=True) %}
+
+{# initialize final options dictionary #}
+{% set _final_options = {} %}
+
+{# iterate over merged option keys/value pairs #}
+{% for pattern, options in merged.items() %}
+
+{# Get any keys for this pattern that we want to skip #}
+{% set skip_keys = skip_options.get(pattern, []) %}
+
+{# filter out any options in skip_keys #}
+{% set filtered = dict(options.items() | rejectattr('0', 'in', skip_keys)) %}
+
+{# the final options for this pattern become the filtered options #}
+{% set _ = _final_options.update({pattern: filtered}) %}
+{% endfor %}
+
+{# output JSON string so we can convert back to dictionary #}
+{{ _final_options | to_json }}
+{% endmacro %}
+
+{##############################################################################}
+{# returns string of SSH options properly indented #}
+{% macro ssh_options(options) -%}
+
+{# loop over the key/value pairs in our options#}
+{% for k,v in options.items() %}
+{# if the value is singular, e.g. not a list #}
+{# display the key with the single value #}
+{% if v is string or v is number %}
+    {{ k }} {{ v }}
+{% else -%}
+
+{# otherwise, we must have a list of options #}
+{# display the key once for each value #}
+{% for item in v %}
+    {{ k }} {{ item }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endmacro %}
