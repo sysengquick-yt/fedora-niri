@@ -20,4 +20,4 @@
       vars:
         apps_url: https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh
         apps_shell: /bin/bash
-      when: not apps_stat.stat.exists or apps_upgrade
+      when: not apps_stat.stat.exists or apps_upgrade | bool

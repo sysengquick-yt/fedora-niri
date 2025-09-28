@@ -2,7 +2,7 @@
 - name: Vars block
   vars:
     rpm_file: "{{ apps_tmpdir.path }}/{{ item.key }}.rpm"
-  when: item.key not in ansible_facts.packages or apps_upgrade
+  when: item.key not in ansible_facts.packages or apps_upgrade | bool
   block:
     - name: "Download RPM file for {{ item.key }}"
       ansible.builtin.get_url:
