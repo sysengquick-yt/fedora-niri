@@ -54,7 +54,7 @@ bash_prompt: |-
       fi
 
       # Username in green
-      local username="${green}\u${reset}"
+      local username="${green}\u${reset}@${blue}\H${reset}"
 
       # Arrow and error display
       local arrow="➜"

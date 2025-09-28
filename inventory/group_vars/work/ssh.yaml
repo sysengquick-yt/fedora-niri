@@ -1,0 +1,47 @@
+---
+ssh_authorized_keys_extra:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICMpV1NruIlhslQT56n+Gzr63c55RcumQKUUAiZnYDTC
+
+ssh_identity_keys_extra:
+  jdratlif: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICMpV1NruIlhslQT56n+Gzr63c55RcumQKUUAiZnYDTC
+  xaiver: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBc+bQFdinbcO0eHrnxfLM+OroTUOt3RKHkTbrh6hNfm
+
+ssh_common_options_extra:
+  IdentitiesOnly: "yes"
+  IdentityAgent: ~/.1password/agent.sock
+  ControlMaster: auto
+  ControlPath: ~/.ssh/cp-%r@%h:%p
+  ControlPersist: 5m
+
+ssh_host_options_extra:
+  devbox:
+    ForwardAgent: "yes"
+    IdentityFile: ~/.ssh/jdratlif.pub
+    RemoteForward:
+      - "*:1080 localhost:1080"
+      - "*:1081 localhost:1081"
+      - "*:1082 localhost:1082"
+      - "*:1083 localhost:1083"
+  sandbox: {}
+  puppet7.bldc:
+    IdentityFile: ~/.ssh/jdratlif.pub
+  puppet7.ctc: {}
+  pangolin16: &laptops
+    IdentityFile: ~/.ssh/jdratlif.pub
+  asahi:
+    <<: *laptops
+  yoga4:
+    <<: *laptops
+  htpc: &homelab
+    IdentityFile: ~/.ssh/xaiver.pub
+  pve:
+    <<: *homelab
+  bastion:
+    Hostname: bastion.remote.technoplaza.net
+    DynamicForward: "*:1080"
+
+ssh_match_options_extra:
+  "originalhost *.remote.technoplaza.net,!bastion.remote.technoplaza.net":
+    ProxyJump: bastion
+    IdentityFile: ~/.ssh/xaiver.pub
+    PKCS11Provider: /usr/lib64/pkcs11/opensc-pkcs11.so
