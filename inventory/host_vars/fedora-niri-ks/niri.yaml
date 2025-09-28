@@ -1,3 +1,7 @@
 ---
 # remove the overrides we put in the niri group
 niri_kdl_binds_extra: {}
+
+niri_kdl_outputs:
+  Virtual-1: |-
+    mode "1920x1080@60.000"
