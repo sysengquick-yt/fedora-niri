@@ -1,0 +1,8 @@
+# THIS FILE WAS CREATED BY ANSIBLE | LOCAL CHANGES MAY BE OVERWRITTEN
+# ansible template: sysengquick.fedora.ssh/templates/authorized_keys.j2
+
+# begin authorized_keys
+{% for key in ssh_authorized_keys_final %}
+{{ key }}
+{% endfor %}
+# end authorized_keys
