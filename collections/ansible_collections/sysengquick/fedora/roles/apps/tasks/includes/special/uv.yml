@@ -11,7 +11,7 @@
     - name: When block
       vars:
         uv_tarball: "{{ apps_tmpdir.path }}/uv.tar.gz"
-      when: not apps_stat.stat.exists or apps_upgrade
+      when: not apps_stat.stat.exists or apps_upgrade | bool
       block:
         - name: Install required packages to extract archive
           ansible.builtin.package:

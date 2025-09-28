@@ -10,7 +10,7 @@
       vars:
         apps_url: https://tailscale.com/install.sh
         apps_become: true
-      when: apps_upgrade or 'tailscale' not in ansible_facts.packages
+      when: apps_upgrade | bool or 'tailscale' not in ansible_facts.packages
 
     - name: Gather interfaces
       ansible.builtin.setup:

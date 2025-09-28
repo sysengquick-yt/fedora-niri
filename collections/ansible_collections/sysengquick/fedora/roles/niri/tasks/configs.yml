@@ -17,7 +17,7 @@
     group: "{{ ansible_user }}"
     mode: "0644"
     backup: true
-    force: "{{ niri_overwrite_config_files or custom_file }}"
+    force: "{{ niri_overwrite_config_files | bool or custom_file }}"
   loop: "{{ niri_config_files }}"
   vars:
     contents: "{{ custom_file if custom_file else lookup('ansible.builtin.file', item) }}"
