@@ -242,8 +242,8 @@ niri_swayidle_events:
   # lock the screen before putting computer to sleep
   before-sleep: swaylock -f
 
-niri_swayidle_timeout_monitors: 960
-niri_swayidle_timeout_screenlock: 900
+niri_swayidle_timeout_monitors: 601
+niri_swayidle_timeout_screenlock: 600
 
 niri_swayidle_timeouts:
   # lock screen after timeout screenlock
@@ -253,9 +253,6 @@ niri_swayidle_timeouts:
   - seconds: "{{ niri_swayidle_timeout_monitors }}"
     command: niri msg action power-off-monitors
 
-niri_swaylock_options:
-  color: 1e1e1e
-  ignore-empty-passwords: ~
-  show-failed-attempts: ~
+niri_swaylock_options: {}
 niri_swaylock_options_extra: {}
 niri_swaylock_options_skip: []
