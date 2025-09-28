@@ -1,0 +1,9 @@
+---
+git_sections_final: |
+  {{
+    git_sections
+    | combine(git_sections_extra)
+    | dict2items
+    | rejectattr('key', 'in', git_sections_skip)
+    | sort(attribute='key')
+  }}
