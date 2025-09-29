@@ -1,0 +1,5 @@
+---
+- name: Install SDDM packages
+  ansible.builtin.package:
+    name: "{{ sddm_packages }}"
+    state: present

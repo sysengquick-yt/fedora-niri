@@ -4,32 +4,8 @@
     host: copr.fedorainfracloud.org
     state: enabled
     name: yalter/niri
-  tags: [niri_install_copr]
 
 - name: Install niri packages
   ansible.builtin.package:
     name: "{{ niri_packages + niri_polkit_agents[niri_polkit_agent].packages }}"
     state: present
-  tags: [niri_install_packages]
-
-- name: Tags block
-  tags: [niri_install_sddm]
-  block:
-    - name: Configure sddm theme
-      ansible.builtin.copy:
-        content: |
-          [Theme]
-          Current={{ niri_sddm_theme }}
-        dest: /etc/sddm.conf.d/theme.conf
-        owner: root
-        group: root
-        mode: "0644"
-        backup: true
-
-    - name: Switch default target to graphical.target
-      ansible.builtin.file:
-        src: /lib/systemd/system/graphical.target
-        dest: /etc/systemd/system/default.target
-        state: link
-        force: true
-      notify: start_sddm

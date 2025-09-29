@@ -1,0 +1,6 @@
+---
+- name: SDDM tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.sddm
+  tags: [niri_sddm]
+  when: niri_sddm

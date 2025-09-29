@@ -1,13 +1,17 @@
 ---
-- name: Import install tasks
+- name: Install tasks
   ansible.builtin.import_tasks: install.yml
   become: true
   tags: [niri_install]
 
-- name: Import config tasks
-  ansible.builtin.import_tasks: configs.yml
-  tags: [niri_configs]
+- name: Config tasks
+  ansible.builtin.import_tasks: config.yml
+  tags: [niri_config]
 
-- name: Import systemd tasks
+- name: Systemd tasks
   ansible.builtin.import_tasks: systemd.yml
   tags: [niri_systemd]
+
+- name: Dependency tasks
+  ansible.builtin.import_tasks: dependency.yml
+  tags: [niri_dependency]

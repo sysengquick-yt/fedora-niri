@@ -1,0 +1,14 @@
+---
+sddm_packages:
+  - sddm
+  - sddm-themes
+
+sddm_compositor_command:
+  niri: /usr/bin/niri -c /etc/sddm/niri-config.kdl
+
+sddm_compositor_template:
+  niri: sddm/niri-config.kdl
+
+sddm_templates:
+  - sddm.conf.d/theme.conf
+  - sddm.conf.d/wayland.conf

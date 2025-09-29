@@ -44,8 +44,6 @@ niri_packages:
   - NetworkManager-wifi
   - niri
   - pasystray
-  - sddm
-  - sddm-themes
 
 niri_polkit_agents:
   kde:

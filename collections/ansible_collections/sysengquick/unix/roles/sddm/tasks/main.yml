@@ -1,0 +1,15 @@
+---
+- name: Become block
+  become: true
+  block:
+    - name: Install tasks
+      ansible.builtin.import_tasks: install.yml
+      tags: [sddm_install]
+
+    - name: Config tasks
+      ansible.builtin.import_tasks: config.yml
+      tags: [sddm_config]
+
+    - name: Service tasks
+      ansible.builtin.import_tasks: service.yml
+      tags: [sddm_service]
