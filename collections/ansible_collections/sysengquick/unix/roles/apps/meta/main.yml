@@ -1,0 +1,62 @@
+---
+argument_specs:
+  main:
+    options:
+      apps_flatpaks:
+        type: list
+        default: []
+        description: Default flatpaks to install
+        elements: str
+      apps_flatpaks_extra:
+        type: list
+        default: []
+        description: Extra flatpaks to install
+        elements: str
+      apps_packages:
+        type: list
+        default: []
+        description: Default repo packages to install
+        elements: str
+      apps_packages_extra:
+        type: list
+        default: []
+        description: Extra repo packages to install
+        elements: str
+      apps_repos:
+        type: dict
+        default: {}
+        description: Default rpm repos to add
+      apps_repos_extra:
+        type: dict
+        default: {}
+        description: Extra rpm repos to add
+      apps_rpms:
+        type: dict
+        default: {}
+        description: Default rpm packages to install
+      apps_rpms_extra:
+        type: dict
+        default: {}
+        description: Extra rpm packages to install
+      apps_skip:
+        type: list
+        default: []
+        description: Apps to skip installing
+        elements: str
+      apps_special:
+        type: list
+        default: []
+        description: Default special apps to install
+        elements: str
+      apps_special_extra:
+        type: list
+        default: []
+        description: Extra special apps to install
+        elements: str
+      apps_upgrade:
+        type: bool
+        default: false
+        description: True to force app upgrades if already installed
+
+dependencies:
+  - role: sysengquick.unix.user

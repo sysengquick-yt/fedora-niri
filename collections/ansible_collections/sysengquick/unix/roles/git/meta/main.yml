@@ -1,0 +1,47 @@
+---
+argument_specs:
+  main:
+    options:
+      git_sections:
+        type: dict
+        default: {}
+        description: |-
+          Configuration sections for .gitconfig
+
+          Example:
+
+          git_sections:
+            core: |-
+              editor = vim
+            'credential "https://github.com"': |-
+              username = sysengquick
+              helper = cache --timeout 3600
+      git_sections_extra:
+        type: dict
+        default: {}
+        description: Extra sections for .gitconfig
+      git_sections_skip:
+        type: list
+        default: []
+        description: Default sections to skip
+        elements: str
+      git_user:
+        type: dict
+        required: true
+        description: Git user configuration
+        options:
+          name:
+            type: str
+            required: true
+            description: Name for the git user
+          email:
+            type: str
+            required: true
+            description: Email for the git user
+          signingkey:
+            type: str
+            required: false
+            description: GPG key for signing
+
+dependencies:
+  - role: sysengquick.unix.user

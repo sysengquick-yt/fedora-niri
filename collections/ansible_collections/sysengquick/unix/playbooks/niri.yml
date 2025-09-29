@@ -1,0 +1,11 @@
+---
+- name: Install niri on fedora
+  hosts: "{{ targets | default('niri') }}"
+  gather_facts: false
+  roles:
+    - role: sysengquick.unix.niri
+      tags: [niri]
+    - role: sysengquick.unix.apps
+      tags: [apps]
+    - role: sysengquick.unix.dotfiles
+      tags: [dotfiles]

@@ -1,0 +1,69 @@
+# THIS FILE WAS CREATED BY ANSIBLE | LOCAL CHANGES MAY BE OVERWRITTEN
+# ansible template: sysengquick.unix.bash/templates/bashrc.sh.j2
+
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+{% set user_paths = bash_paths_final | join(':') %}
+if ! [[ "$PATH" =~ "{{ user_paths }}:" ]]; then
+    export PATH="{{ user_paths }}:$PATH"
+fi
+
+# begin custom bash prompt
+{% if bash_prompt %}
+{{ bash_prompt }}
+{% endif %}
+# end custom bash prompt
+
+# begin bash history options
+{% for option in bash_history_options %}
+shopt -s {{ option }}
+{% endfor %}
+# end bash history options
+
+# begin shell options
+{% for option in bash_shell_options_final %}
+set -o {{ option }}
+{% endfor %}
+# end shell options
+
+# begin environment vars
+{% for item in bash_environment_final %}
+export {{ item.key }}={{ item.value | quote }}
+{% endfor %}
+# end environment vars
+
+# begin bash functions
+{% for item in bash_functions_final %}
+function {{ item.key }} {
+{{ item.value | indent(4, first=True) }}
+}
+{% endfor %}
+# end bash functions
+
+# begin bash aliases
+{% for item in bash_aliases_final %}
+alias {{ item.key }}={{ item.value | quote }}
+{% endfor %}
+# end bash aliases
+
+# begin sourced files
+{% for source in bash_sources_final %}
+[ -f {{ source }} ] && . {{ source | quote }}
+{% endfor %}
+# end sourced files
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc

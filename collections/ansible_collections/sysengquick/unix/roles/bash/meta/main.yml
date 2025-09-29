@@ -1,0 +1,110 @@
+---
+argument_specs:
+  main:
+    options:
+      bash_aliases:
+        type: dict
+        description: Bash alias definitions
+      bash_aliases_extra:
+        type: dict
+        default: {}
+        description: Extra aliases
+      bash_aliases_skip:
+        type: list
+        elements: str
+        default: []
+        description: Aliases to skip
+      bash_environment:
+        type: dict
+        description: Environment variable definitions
+      bash_environment_extra:
+        type: dict
+        default: {}
+        description: Extra environment variables
+      bash_environment_skip:
+        type: list
+        elements: str
+        default: []
+        description: Environment variables to skip
+      bash_functions:
+        type: dict
+        default: {}
+        description: Function definitions
+      bash_functions_extra:
+        type: dict
+        default: {}
+        description: Extra functions
+      bash_functions_skip:
+        type: list
+        elements: str
+        default: []
+        description: Functions to skip
+      bash_history_options:
+        type: list
+        elements: str
+        default:
+          - histappend
+          - histverify
+        description: History options to set
+      bash_paths:
+        type: list
+        elements: str
+        default:
+          - ~/.local/bin
+          - ~/bin
+        description: Directories to add to PATH
+      bash_paths_extra:
+        type: list
+        elements: str
+        default: []
+        description: Extra paths
+      bash_paths_skip:
+        type: list
+        elements: str
+        default: []
+        description: Default paths to skip
+      bash_prompt:
+        type: str
+        description: Bash prompt configuration function
+      bash_shell_options:
+        type: list
+        default: []
+        elements: str
+        description: Bash shell options to configure (e.g 'vi')
+      bash_shell_options_extra:
+        type: list
+        default: []
+        elements: str
+        description: Extra Bash shell options to configure
+      bash_shell_options_skip:
+        type: list
+        default: []
+        elements: str
+        description: Bash shell options to skip
+      bash_sources:
+        type: list
+        elements: str
+        default:
+          - /usr/share/bash-completion/bash_completion
+        description: Files to source in bash configuration
+      bash_sources_extra:
+        type: list
+        elements: str
+        default: []
+        description: Extra files to source
+      bash_sources_skip:
+        type: list
+        elements: str
+        default: []
+        description: Source files to skip
+      bash_ssh_agent:
+        type: bool
+        default: false
+        description: Flag to start persistent SSH agent in login shells
+      bash_umask:
+        type: str
+        default: "0022"
+        description: User file creation mask
+
+dependencies:
+  - role: sysengquick.unix.user

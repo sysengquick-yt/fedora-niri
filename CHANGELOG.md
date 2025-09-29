@@ -1,1 +1,1 @@
-collections/ansible_collections/sysengquick/fedora/CHANGELOG.md
+collections/ansible_collections/sysengquick/unix/CHANGELOG.md
