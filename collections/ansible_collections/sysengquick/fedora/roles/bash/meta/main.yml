@@ -107,4 +107,4 @@ argument_specs:
         description: User file creation mask
 
 dependencies:
-  - role: sysengquick.fedora.user
+  - role: sysengquick.unix.user

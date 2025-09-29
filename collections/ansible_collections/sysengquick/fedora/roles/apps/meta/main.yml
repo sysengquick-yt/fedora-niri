@@ -59,4 +59,4 @@ argument_specs:
         description: True to force app upgrades if already installed
 
 dependencies:
-  - role: sysengquick.fedora.user
+  - role: sysengquick.unix.user

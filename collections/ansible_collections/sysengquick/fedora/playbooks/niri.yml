@@ -3,9 +3,9 @@
   hosts: "{{ targets | default('niri') }}"
   gather_facts: false
   roles:
-    - role: sysengquick.fedora.niri
+    - role: sysengquick.unix.niri
       tags: [niri]
-    - role: sysengquick.fedora.apps
+    - role: sysengquick.unix.apps
       tags: [apps]
-    - role: sysengquick.fedora.dotfiles
+    - role: sysengquick.unix.dotfiles
       tags: [dotfiles]

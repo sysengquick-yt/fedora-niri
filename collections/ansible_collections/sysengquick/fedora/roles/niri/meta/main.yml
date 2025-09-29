@@ -178,4 +178,4 @@ argument_specs:
         elements: str
 
 dependencies:
-  - role: sysengquick.fedora.user
+  - role: sysengquick.unix.user

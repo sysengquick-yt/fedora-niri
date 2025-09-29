@@ -69,4 +69,4 @@ argument_specs:
         description: SSH client Match block options to skip/exclude
 
 dependencies:
-  - role: sysengquick.fedora.user
+  - role: sysengquick.unix.user

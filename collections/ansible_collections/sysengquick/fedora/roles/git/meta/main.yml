@@ -44,4 +44,4 @@ argument_specs:
             description: GPG key for signing
 
 dependencies:
-  - role: sysengquick.fedora.user
+  - role: sysengquick.unix.user

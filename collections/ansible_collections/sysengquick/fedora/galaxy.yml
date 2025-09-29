@@ -5,7 +5,7 @@
 namespace: sysengquick
 
 # The name of the collection. Has the same character restrictions as 'namespace'
-name: fedora
+name: unix
 
 # The version of the collection. Must be compatible with semantic versioning
 version: 1.4.0
@@ -20,7 +20,7 @@ authors:
 
 ### OPTIONAL but strongly recommended
 # A short summary description of the collection
-description: your collection description
+description: Deploy applications and configure dotfiles for unix systems (linux, macOS, WSL)
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
@@ -39,19 +39,20 @@ tags: [linux]
 # collection label 'namespace.name'. The value is a version range
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
-dependencies: {}
+dependencies:
+  community.general: ">=9.5.11"
 
 # The URL of the originating SCM repository
-repository: http://example.com/repository
+repository: http://github.com/sysengquick-yt/ansible-unix
 
 # The URL to any online docs
-documentation: http://docs.example.com
+documentation: https://github.com/sysengquick-yt/ansible-unix/blob/main/README.md
 
 # The URL to the homepage of the collection/project
-homepage: http://example.com
+homepage: http://github.com/sysengquick-yt/ansible-unix
 
 # The URL to the collection issue tracker
-issues: http://example.com/issue/tracker
+issues: https://github.com/sysengquick-yt/ansible-unix/issues
 
 # A list of file glob-like patterns used to filter any files or directories that should not be included in the build
 # artifact. A pattern is matched from the relative path of the file or directory of the collection directory. This
