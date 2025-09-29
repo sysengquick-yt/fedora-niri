@@ -16,13 +16,3 @@ niri_kdl_clipboard: |-
 
 niri_kdl_environment:
   ELECTRON_OZONE_PLATFORM_HINT: auto
-
-niri_overwrite_config_files: true
-
-# 15 minutes for monitor power off
-niri_swayidle_timeout_monitors: 900
-
-niri_swaylock_options:
-  color: 1e1e1e
-  ignore-empty-passwords: ~
-  show-failed-attempts: ~

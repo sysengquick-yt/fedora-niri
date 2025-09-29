@@ -1,0 +1,11 @@
+---
+sudoers_rules:
+  dnf:
+    commands: /usr/bin/dnf
+    group: wheel
+  power:
+    commands:
+      - /usr/bin/poweroff
+      - /usr/bin/shutdown
+      - /usr/bin/reboot
+    group: wheel

@@ -100,6 +100,7 @@
     // }
   },
   "clock": {
+    "timezone": "America/Indiana/Indianapolis",
     "format": "{:%d %b \uf133 | %I:%M %p}  ",
     "format-alt": "{:%A, %B %d, %Y (%R)} \uf133 ",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",

@@ -1,19 +1,14 @@
 ---
-git_user:
-  name: John Ratliff
-  email: john@technoplaza.net
-
-git_sections:
-  commit: |-
-    template = /dev/null
-  'credential "https://github.com"': |-
-    username = jdratlif
-    helper = cache --timeout=14400
-  pull: |-
-    rebase = true
-  alias: |-
-    oneline = log --oneline
-  safe: |-
-    directory = *
-  core: |-
-    editor = vim
+git_config:
+  user:
+    name: John Doe
+    email: john.doe@example.com
+  alias:
+    oneline: log --oneline
+  core:
+    editor: vim
+  credential:
+    username: proxmox
+    helper: cache --timeout=14400
+  pull:
+    rebase: true

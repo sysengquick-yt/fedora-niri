@@ -1,0 +1,8 @@
+---
+configs_files:
+  inputrc:
+    directory: ~
+    files: [.inputrc]
+  kitty: {}
+  waybar:
+    files: [config.jsonc]
