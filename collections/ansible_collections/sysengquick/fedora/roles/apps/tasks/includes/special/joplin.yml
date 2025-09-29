@@ -4,7 +4,7 @@
   block:
     - name: Install fuse-libs for AppImage
       ansible.builtin.package:
-        name: fuse-libs
+        name: [fuse, fuse-libs]
         state: present
       become: true
 
