@@ -1,9 +1,9 @@
 ---
-git_sections_final: |
+git_config_final: |
   {{
-    git_sections
-    | combine(git_sections_extra)
+    git_config
+    | combine(git_config_extra, recursive=True)
     | dict2items
-    | rejectattr('key', 'in', git_sections_skip)
+    | rejectattr('key', 'in', git_config_skip)
     | sort(attribute='key')
   }}

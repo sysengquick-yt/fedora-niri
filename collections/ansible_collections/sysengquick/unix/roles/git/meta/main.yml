@@ -2,46 +2,46 @@
 argument_specs:
   main:
     options:
-      git_sections:
+      git_config:
         type: dict
-        default: {}
         description: |-
-          Configuration sections for .gitconfig
+          The git configuration options.
+
+          user.name and user.email are required.
+          Everything else is optional.
 
           Example:
 
-          git_sections:
-            core: |-
-              editor = vim
-            'credential "https://github.com"': |-
-              username = sysengquick
-              helper = cache --timeout 3600
-      git_sections_extra:
+          git_config:
+            user:
+              name: John Ratliff
+              email: john@technoplaza.net
+            alias:
+              oneline: log --oneline
+            commit:
+              template: /dev/null
+            core:
+              editor: vim
+            credential:
+              helper: cache --timeout=14400
+              uisername: jdratlif
+            diff:
+              tool: default-difftool
+            'difftool "default-difftool"':
+              cmd: code --wait --diff $LOCAL $REMOTE
+            pull:
+              rebase: true
+            safe:
+              directory: "*"
+      git_config_extra:
         type: dict
         default: {}
-        description: Extra sections for .gitconfig
-      git_sections_skip:
+        description: Extra gitconfig options
+      git_config_skip:
         type: list
         default: []
-        description: Default sections to skip
+        description: Options in gitconfig to skip
         elements: str
-      git_user:
-        type: dict
-        required: true
-        description: Git user configuration
-        options:
-          name:
-            type: str
-            required: true
-            description: Name for the git user
-          email:
-            type: str
-            required: true
-            description: Email for the git user
-          signingkey:
-            type: str
-            required: false
-            description: GPG key for signing
 
 dependencies:
   - role: sysengquick.unix.user

@@ -1,4 +1,4 @@
 ---
-git_sections: {}
-git_sections_extra: {}
-git_sections_skip: []
+git_config: {}
+git_config_extra: {}
+git_config_skip: []

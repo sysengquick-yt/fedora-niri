@@ -1,13 +1,9 @@
 # THIS FILE WAS CREATED BY ANSIBLE | LOCAL CHANGES MAY BE OVERWRITTEN
 # ansible template: sysengquick.unix.git/templates/gitconfig.j2
+{% for section in git_config_final %}
 
-[user]
-    name = {{ git_user.name }}
-    email = {{ git_user.email }}
-{% if 'signingkey' in git_user %}
-    signingkey = {{ git_user.signingkey }}
-{% endif %}
-{% for section in git_sections_final %}
 [{{ section.key }}]
-{{ section.value | indent(4, first=True) }}
+{% for k,v in section.value.items() %}
+    {{ k }} = {% if v is boolean %}{{ v | lower }}{% else %}{{ v }}{% endif +%}
+{% endfor %}
 {% endfor %}
