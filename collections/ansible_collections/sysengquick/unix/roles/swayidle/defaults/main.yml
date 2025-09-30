@@ -1,0 +1,15 @@
+---
+swayidle_events:
+  # lock the screen before putting computer to sleep
+  before-sleep: swaylock -f
+
+swayidle_timeout_monitors: 601
+swayidle_timeout_screenlock: 600
+
+swayidle_timeouts:
+  # lock screen after timeout screenlock
+  - seconds: "{{ swayidle_timeout_screenlock }}"
+    command: swaylock -f
+  # turn monitors off after timeout montors
+  - seconds: "{{ swayidle_timeout_monitors }}"
+    command: niri msg action power-off-monitors

@@ -1,8 +1,0 @@
-[Unit]
-PartOf=graphical-session.target
-After=graphical-session.target
-Requisite=graphical-session.target
-
-[Service]
-ExecStart=/usr/bin/swayidle -w{% for timeout in niri_swayidle_timeouts %} timeout {{ timeout.seconds }} {{ timeout.command | quote }}{% if 'resume' in timeout %} resume {{ timeout.resume | quote }}{% endif %}{% endfor %}{% for event,command in niri_swayidle_events.items() %} {{ event }} {{ command | quote }}{% endfor +%}
-Restart=on-failure

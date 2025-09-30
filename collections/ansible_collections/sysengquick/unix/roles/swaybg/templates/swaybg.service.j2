@@ -4,5 +4,5 @@ After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/swaybg -m fill -i {{ niri_swaybg_image | quote }}
+ExecStart=/usr/bin/swaybg -m fill -i {{ swaybg_image | quote }}
 Restart=on-failure

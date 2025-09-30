@@ -231,33 +231,11 @@ niri_kdl_switch_events: ~
 niri_kdl_window_rules: []
 niri_kdl_xwayland_satellite: ~
 
-niri_overwrite_config_files: false
-
 niri_polkit_agent: mate
-
-niri_swaybg_image: /usr/share/backgrounds/f42/default/f42-01-day.jxl
-
-niri_swayidle_events:
-  # lock the screen before putting computer to sleep
-  before-sleep: swaylock -f
-
-niri_swayidle_timeout_monitors: 601
-niri_swayidle_timeout_screenlock: 600
-
-niri_swayidle_timeouts:
-  # lock screen after timeout screenlock
-  - seconds: "{{ niri_swayidle_timeout_screenlock }}"
-    command: swaylock -f
-  # turn monitors off after timeout montors
-  - seconds: "{{ niri_swayidle_timeout_monitors }}"
-    command: niri msg action power-off-monitors
-
-niri_swaylock_options: {}
-niri_swaylock_options_extra: {}
-niri_swaylock_options_skip: []
 
 # niri optional dependencies
 niri_use_sddm: true
 niri_use_swaybg: true
 niri_use_swayidle: true
+niri_use_swaylock: true
 niri_use_waybar: true

@@ -1,0 +1,11 @@
+---
+swaylock_options_final: |
+  {{
+    (
+      swaylock_options
+      | combine(swaylock_options_extra)
+    )
+    | dict2items
+    | rejectattr('key', 'in', swaylock_options_skip)
+    | items2dict
+  }}

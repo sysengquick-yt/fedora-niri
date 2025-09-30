@@ -1,0 +1,23 @@
+---
+argument_specs:
+  main:
+    options:
+      swaylock_options:
+        type: dict
+        default:
+          color: 1e1e1e
+          ignore-empty-passwords: ~
+          show-failed-attempts: ~
+        description: Default options for swaylock
+      swaylock_options_extra:
+        type: dict
+        default: {}
+        description: Extra options for swaylock
+      swaylock_options_skip:
+        type: list
+        default: []
+        description: Options to remove from the swaylock defaults
+        elements: str
+
+dependencies:
+  - role: sysengquick.unix.user_systemd_folder

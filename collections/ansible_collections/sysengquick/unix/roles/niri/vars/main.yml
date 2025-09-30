@@ -1,12 +1,4 @@
 ---
-niri_config_dirs:
-  - niri
-  - swaylock
-
-niri_config_templates:
-  - niri/config.kdl
-  - swaylock/config
-
 # noqa jinja[spacing]
 niri_kdl_binds_final: |-
   {% set result = {} %}
@@ -75,19 +67,3 @@ niri_service_dep_wants: |-
   {{ _services }}
 
 niri_service_wants: "{{ ['niri-polkit.service'] + niri_service_dep_wants }}"
-
-niri_systemd_service_templates:
-  - systemd/user/niri-polkit.service
-  - systemd/user/swaybg.service
-  - systemd/user/swayidle.service
-
-niri_swaylock_options_final: |
-  {{
-    (
-      niri_swaylock_options
-      | combine(niri_swaylock_options_extra)
-    )
-    | dict2items
-    | rejectattr('key', 'in', niri_swaylock_options_skip)
-    | items2dict
-  }}

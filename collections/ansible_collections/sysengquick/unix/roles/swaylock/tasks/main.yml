@@ -1,16 +1,16 @@
 ---
-- name: Create niri config directory
+- name: Create swaylock config directory
   ansible.builtin.file:
     state: directory
-    dest: "{{ user_info.home }}/.config/niri"
+    dest: "{{ user_info.home }}/.config/swaylock"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0755"
 
-- name: Template niri config
+- name: Template swaylock config
   ansible.builtin.template:
-    src: "config.kdl.j2"
-    dest: "{{ user_info.home }}/.config/niri/config.kdl"
+    src: "config.j2"
+    dest: "{{ user_info.home }}/.config/swaylock/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "0644"

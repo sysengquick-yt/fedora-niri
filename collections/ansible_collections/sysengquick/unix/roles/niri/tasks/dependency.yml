@@ -10,3 +10,21 @@
     name: sysengquick.unix.waybar
   tags: [niri_waybar]
   when: niri_use_waybar
+
+- name: Swaybg tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.swaybg
+  tags: [niri_swaybg]
+  when: niri_use_swaybg
+
+- name: Swayidle tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.swayidle
+  tags: [niri_swayidle]
+  when: niri_use_swayidle
+
+- name: Swaylock tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.swaylock
+  tags: [niri_swaylock]
+  when: niri_use_swaylock
