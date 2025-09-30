@@ -41,6 +41,7 @@ niri_packages:
   - blueman
   - nautilus
   - network-manager-applet
+  - NetworkManager-wifi
   - niri
   - pasystray
   - sddm
