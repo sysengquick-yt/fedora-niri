@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 1.5.0 - 2025-09-27
+
+- add ssh, gitconfig, and bash config templatating
+- allow overriding hosts in the niri playbok
+- fix issue in boolean handling
+  - passing as extra_vars could change the type to str and always be true
+- update inventory
+  - add more host groups
+  - add docker host for local connections
+  - add missing packages
+  - add more example config
+  - add hostname to custom prompt
+- fix joplin dependencies
+  - needs fusermount from fuse to actually run
+- add nautilus to niri packages
+  - needed for file chooser dialogs
+- add NetworkManager-wifi to niri packages
+  - needed to configure wifi networks with nm-applet
+- remove unused niri default config from role
+
 ## 1.4.0 - 2025-09-27
 
 - support custom files for niri configs (e.g. waybar)
