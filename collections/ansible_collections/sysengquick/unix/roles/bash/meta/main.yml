@@ -105,6 +105,21 @@ argument_specs:
         type: str
         default: "0022"
         description: User file creation mask
+      bash_use_upstream_aliases:
+        type: bool
+        default: true
+        description: |
+          Whether to include the upstream fedora default aliases: [ls, ll]
+      bash_use_upstream_paths:
+        type: bool
+        default: true
+        description: |
+          Whether to include the upstream fedora default paths: [~/.local/bin, ~/bin]
+      bash_use_upstream_sources:
+        type: bool
+        default: true
+        description: |
+          Whether to include the upstream fedora default sources: [bash_completion]
 
 dependencies:
   - role: sysengquick.unix.user

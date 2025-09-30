@@ -1,16 +1,13 @@
 ---
 bash_aliases_final: |
   {{
-    bash_aliases
+    (bash_upstream_aliases if bash_use_upstream_aliases else {})
+    | combine(bash_aliases)
     | combine(bash_aliases_extra)
     | dict2items
     | rejectattr('key', 'in', bash_aliases_skip)
     | sort(attribute='key')
   }}
-
-bash_aliases_presets:
-  ls: ls --color=auto
-  ll: ls -l --color=auto
 
 bash_environment_final: |
   {{
@@ -33,17 +30,19 @@ bash_functions_final: |
 # Sorting or using filters could change the order
 # Using custom logic to preserve order while removing duplicates and skipped paths
 bash_paths_final: |
-  {%- set seen = [] -%}
-  {%- set result = [] -%}
-  {%- for path in (bash_paths + bash_paths_extra) -%}
-    {%- if path not in bash_paths_skip and path not in seen -%}
-      {%- set _ = seen.append(path) -%}
-      {%- set _ = result.append(path) -%}
-    {%- endif -%}
-  {%- endfor -%}
-  {{ result }}
+  {# set initial final_paths list #}
+  {% set upstream = bash_upstream_paths if bash_use_upstream_paths else [] %}
+  {% set final_paths = upstream | list -%}
 
-bash_paths_presets: [~/.local/bin, ~/bin]
+  {# loop over all specified paths #}
+  {% for path in (bash_paths + bash_paths_extra) -%}
+    {# skip requested paths and any duplicates #}
+    {%- if path not in bash_paths_skip and path not in final_paths -%}
+      {# add to final_paths list #}
+      {%- set _ = final_paths.append(path) %}
+    {%- endif %}
+  {% endfor %}
+  {{ final_paths }}
 
 bash_shell_options_final: |
   {{
@@ -55,11 +54,20 @@ bash_shell_options_final: |
 
 bash_sources_final: |
   {{
-    bash_sources
+    (bash_upstream_sources if bash_use_upstream_sources else [])
+    | union(bash_sources)
     | union(bash_sources_extra)
     | difference(bash_sources_skip)
     | sort
   }}
 
-bash_sources_presets: [/usr/share/bash-completion/bash_completion]
 bash_templates: [bash_profile, bashrc]
+
+bash_upstream_aliases:
+  ls: ls --color=auto
+  ll: ls -l --color=auto
+bash_upstream_paths:
+  - ~/.local/bin
+  - ~/bin
+bash_upstream_sources:
+  - /usr/share/bash-completion/bash_completion
