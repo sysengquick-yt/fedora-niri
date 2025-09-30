@@ -8,10 +8,10 @@
   ansible.builtin.import_tasks: config.yml
   tags: [niri_config]
 
-- name: Systemd tasks
-  ansible.builtin.import_tasks: systemd.yml
-  tags: [niri_systemd]
-
 - name: Dependency tasks
   ansible.builtin.import_tasks: dependency.yml
   tags: [niri_dependency]
+
+- name: Systemd tasks
+  ansible.builtin.import_tasks: systemd.yml
+  tags: [niri_systemd]

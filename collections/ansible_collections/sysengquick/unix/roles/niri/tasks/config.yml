@@ -8,21 +8,6 @@
     mode: "0755"
   loop: "{{ niri_config_dirs }}"
 
-- name: Copy config files
-  ansible.builtin.copy:
-    content: |
-      {{ contents }}
-    dest: "{{ user_info.home }}/.config/{{ item }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: "0644"
-    backup: true
-    force: "{{ niri_overwrite_config_files | bool or custom_file }}"
-  loop: "{{ niri_config_files }}"
-  vars:
-    contents: "{{ custom_file if custom_file else lookup('ansible.builtin.file', item) }}"
-    custom_file: "{{ lookup('ansible.builtin.file', inventory_dir + '/files/niri/' + item, errors='ignore') }}"
-
 - name: Template niri configs
   ansible.builtin.template:
     src: "{{ item }}.j2"

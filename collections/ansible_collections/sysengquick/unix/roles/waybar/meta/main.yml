@@ -1,0 +1,11 @@
+---
+argument_specs:
+  main:
+    options:
+      waybar_overwrite_config_files:
+        type: bool
+        default: false
+        description: Flag to overwrite existing config files
+
+dependencies:
+  - role: sysengquick.unix.user

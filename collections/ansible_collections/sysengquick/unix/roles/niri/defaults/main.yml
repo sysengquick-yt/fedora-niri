@@ -235,8 +235,6 @@ niri_overwrite_config_files: false
 
 niri_polkit_agent: mate
 
-niri_sddm: true
-
 niri_swaybg_image: /usr/share/backgrounds/f42/default/f42-01-day.jxl
 
 niri_swayidle_events:
@@ -257,3 +255,9 @@ niri_swayidle_timeouts:
 niri_swaylock_options: {}
 niri_swaylock_options_extra: {}
 niri_swaylock_options_skip: []
+
+# niri optional dependencies
+niri_use_sddm: true
+niri_use_swaybg: true
+niri_use_swayidle: true
+niri_use_waybar: true

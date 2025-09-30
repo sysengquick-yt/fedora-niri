@@ -1,12 +1,7 @@
 ---
 niri_config_dirs:
   - niri
-  - waybar
   - swaylock
-
-niri_config_files:
-  - waybar/config.jsonc
-  - waybar/style.css
 
 niri_config_templates:
   - niri/config.kdl
@@ -62,11 +57,24 @@ niri_polkit_agents:
     packages: ["xfce-polkit"]
     exec: /usr/libexec/xfce-polkit
 
-niri_service_wants:
-  - niri-polkit.service
-  - swaybg.service
-  - swayidle.service
-  - waybar.service
+niri_service_dep_wants: |-
+  {# initialize result list #}
+  {% set _services = [] -%}
+
+  {# Loop over each dependent service #}
+  {% for name in ['swaybg', 'swayidle', 'waybar'] -%}
+
+  {# find the corresponding niri_use flag #}
+  {% set var_name = 'niri_use_' ~ name -%}
+
+  {# if the flag is set, add the service to final list #}
+  {% if vars[var_name] %}
+    {%- set _ = _services.append(name ~ '.service') %}
+  {% endif %}
+  {% endfor %}
+  {{ _services }}
+
+niri_service_wants: "{{ ['niri-polkit.service'] + niri_service_dep_wants }}"
 
 niri_systemd_service_templates:
   - systemd/user/niri-polkit.service

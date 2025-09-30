@@ -3,4 +3,10 @@
   ansible.builtin.import_role:
     name: sysengquick.unix.sddm
   tags: [niri_sddm]
-  when: niri_sddm
+  when: niri_use_sddm
+
+- name: Waybar tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.waybar
+  tags: [niri_waybar]
+  when: niri_use_waybar

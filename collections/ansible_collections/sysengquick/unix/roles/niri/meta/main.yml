@@ -91,22 +91,12 @@ argument_specs:
       niri_kdl_xwayland_satellite:
         type: str
         description: Xwayland satellite configuration block for niri
-      niri_overwrite_config_files:
-        type: bool
-        default: false
-        description: |-
-          Flag to overwrite default config files.
-
-          This does not affect templates which are always overwritten.
       niri_polkit_agent:
         type: str
         default: mate
         choices: [kde, lxqt, lxde, mate, xfce]
         description: Which graphical policykit agent to use
-      niri_sddm:
-        type: bool
-        default: true
-        description: Whether to install the SDDM graphical login manaager
+
       niri_swaybg_image:
         type: str
         default: /usr/share/backgrounds/f42/default/f42-01-day.jxl
@@ -176,6 +166,22 @@ argument_specs:
         default: []
         description: Options to remove from the swaylock defaults
         elements: str
+      niri_use_sddm:
+        type: bool
+        default: true
+        description: Whether to use and configure SDDM
+      niri_use_swaybg:
+        type: bool
+        default: true
+        description: Whether to use and configure swaybg
+      niri_use_swayidle:
+        type: bool
+        default: true
+        description: Whether to use and configure swayidle
+      niri_use_waybar:
+        type: bool
+        default: true
+        description: Whether to use and configure waybar
 
 dependencies:
   - role: sysengquick.unix.user
