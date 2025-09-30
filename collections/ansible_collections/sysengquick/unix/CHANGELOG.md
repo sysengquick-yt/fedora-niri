@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 2.0.0 - 2025-10-04
+
+- rename collection to sysengquick.unix
+- update collection metadata for ansible galaxy publishing
+- separate niri tasks into dependent roles
+  - added sddm, waybar, swaybg, swayidle, and swaylock roles
+  - preparation for support of non-niri desktop envrionments (e.g. hyprland)
+- remove bash preset variables
+  - replaced with bash_use_upstream_X in role
+- simplify git role configs
+  - switch to single git_config variable
+- sort swaylock configs for idempotency
+- update inventory vars to reflect role changes
+- add plymouth configs
+- replace niri playbook with fedora metarole and playbook
+- add dotfiles playbook
+- fix bug in special app includes
+- add custom config files and dotfiles_configs
+- replace bash_history_options and bash_shell_options with bash custom config sections
+- use systemd_service module to handle daemon-reload
+- fetch ansible_user from controller environment for local connections
+- install default fonts for niri
+- add tmux appimage special app
+- add apps playbook
+- remove waybar role custom configs
+  - use dotfiles_configs and configs role instead
+- add fstab role to handle fstab mounts
+- add sudoers role to handle sudoers.d configs
+
 ## 1.5.0 - 2025-09-27
 
 - add ssh, gitconfig, and bash config templatating
