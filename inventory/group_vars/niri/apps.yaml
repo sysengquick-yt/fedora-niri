@@ -3,10 +3,13 @@ apps_packages:
   - brave-browser
   - btop
   - chromium
+  - cifs-utils
   - evolution-ews
+  - firefox
   - freerdp
   - git
   - kitty
+  - opensc
   - podman-compose
   - podman-docker
   - vim-default-editor

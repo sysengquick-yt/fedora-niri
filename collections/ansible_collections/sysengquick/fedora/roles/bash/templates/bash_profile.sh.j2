@@ -1,0 +1,25 @@
+# THIS FILE WAS CREATED BY ANSIBLE | LOCAL CHANGES MAY BE OVERWRITTEN
+# ansible template: sysengquick.fedora.bash/templates/bash_profile.sh.j2
+
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+{% if bash_ssh_agent %}
+    # Load existing ssh agent, if it exists
+    if [ -f ~/.ssh/ssh-agent ]; then
+        eval `cat ~/.ssh/ssh-agent` >/dev/null
+    fi
+
+    # Make sure agent is still running
+    # If not, start a new one
+    if ! ssh-add -l >/dev/null 2>&1; then
+        ssh-agent -s > ~/.ssh/ssh-agent
+        eval `cat ~/.ssh/ssh-agent`
+    fi
+{% endif %}
+umask {{ bash_umask }}

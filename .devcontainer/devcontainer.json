@@ -14,6 +14,7 @@
         "mhutchie.git-graph",
         "oderwat.indent-rainbow",
         "redhat.ansible",
+        "samuelcolvin.jinjahtml",
         "yzhang.markdown-all-in-one"
       ],
       "settings": {
@@ -28,12 +29,16 @@
         },
         "editor.formatOnSave": true,
         "files.associations": {
+          "*.j2": "jinja",
+          "*.sh.j2": "jinja-shell",
           "*.yml": "ansible"
         },
         "files.trimFinalNewlines": true,
         "files.trimTrailingWhitespace": true,
         "ansible.python.interpreterPath": "/usr/local/bin/python3",
-        "python.defaultInterpreterPath": "/usr/local/bin/python3"
+        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "python-envs.defaultEnvManager": "ms-python.python:system",
+        "python-envs.pythonProjects": []
       }
     }
   }

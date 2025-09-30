@@ -1,0 +1,28 @@
+---
+niri_kdl_binds_extra:
+  Mod+T: 'hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }'
+
+niri_kdl_binds_skip:
+  # PageUp/PagwDown is sufficient, thanks
+  - "Mod+U"
+  - "Mod+I"
+  - "Mod+Ctrl+U"
+  - "Mod+Ctrl+I"
+  - "Mod+Shift+U"
+  - "Mod+Shift+I"
+
+niri_kdl_clipboard: |-
+  disable-primary
+
+niri_kdl_environment:
+  ELECTRON_OZONE_PLATFORM_HINT: auto
+
+niri_overwrite_config_files: true
+
+# 15 minutes for monitor power off
+niri_swayidle_timeout_monitors: 900
+
+niri_swaylock_options:
+  color: 1e1e1e
+  ignore-empty-passwords: ~
+  show-failed-attempts: ~

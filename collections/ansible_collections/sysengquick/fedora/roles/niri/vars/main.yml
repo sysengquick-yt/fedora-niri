@@ -38,9 +38,11 @@ niri_kdl_sections:
   - xwayland-satellite
 
 niri_packages:
-  - niri
   - blueman
+  - nautilus
   - network-manager-applet
+  - NetworkManager-wifi
+  - niri
   - pasystray
   - sddm
   - sddm-themes

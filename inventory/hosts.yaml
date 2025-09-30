@@ -1,5 +1,23 @@
 ---
-niri:
+all:
+  children:
+    niri:
+      hosts:
+        fedora-niri-ks:
+        beelink:
+        pangolin16:
+        docker:
+
+    work:
+      hosts:
+        beelink:
+        pangolin16:
+        docker:
+
   hosts:
     fedora-niri-ks:
-      # ansible_host: 192.168.1.95
+      ansible_host: fedora-niri-ks.local.technoplaza.net
+    beelink:
+    pangolin16:
+    docker:
+      ansible_host: host.docker.internal

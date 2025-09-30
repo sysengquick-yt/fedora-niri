@@ -11,8 +11,8 @@
     - name: Install packages
       ansible.builtin.dnf:
         name: "{{ apps_packages_final }}"
-        state: "{{ 'latest' if apps_upgrade else 'present' }}"
-        update_only: "{{ apps_upgrade }}"
+        state: "{{ 'latest' if apps_upgrade | bool else 'present' }}"
+        update_only: "{{ apps_upgrade | bool }}"
         allowerasing: true
 
 - name: Tags block

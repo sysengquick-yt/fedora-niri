@@ -1,0 +1,9 @@
+---
+- name: Template gitconfig
+  ansible.builtin.template:
+    src: gitconfig.j2
+    dest: "{{ user_info.home }}/.gitconfig"
+    backup: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"

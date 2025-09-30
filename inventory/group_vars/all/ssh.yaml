@@ -1,0 +1,6 @@
+---
+ssh_common_options:
+  ServerAliveCountMax: 3
+  ServerAliveInterval: 30
+  StrictHostKeyChecking: accept-new
+  User: "{{ ansible_user }}"

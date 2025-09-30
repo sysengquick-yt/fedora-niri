@@ -1,0 +1,29 @@
+---
+ssh_authorized_keys_extra:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPR+Iw9T9Ld2j1ks6zSonNut/AtR5bmF7Vo96n7vmzrt root@2757c8fbe5a8
+
+ssh_identity_keys_extra:
+  bastion: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPR+Iw9T9Ld2j1ks6zSonNut/AtR5bmF7Vo96n7vmzrt root@2757c8fbe5a8
+
+ssh_common_options_extra:
+  CanonicalizeHostname: "yes"
+  CanonicalizeMaxDots: 2
+  CanonicalDomains: local.technoplaza.net
+
+ssh_host_options_extra:
+  devbox: {}
+  devbox2:
+    RemoteForward:
+      - "*:1080 localhost:1080"
+      - "*:5173 localhost:5173"
+  bastion:
+    Hostname: bastion.local.technoplaza.net
+    DynamicForward: "*:1080"
+    IdentityFile: ~/.ssh/bastion.pub
+  smartcard:
+    HostName: secure.example.com
+    PKCS11Provider: /usr/lib64/pkcs11/opensc-pkcs11.so
+
+ssh_match_options_extra:
+  'originalhost "*.dmz.technoplaza.net"':
+    ProxyJump: bastion

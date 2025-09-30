@@ -1,0 +1,72 @@
+---
+argument_specs:
+  main:
+    options:
+      ssh_authorized_keys:
+        type: list
+        elements: str
+        default: []
+        description: List of SSH public keys to add to authorized_keys
+      ssh_authorized_keys_extra:
+        type: list
+        elements: str
+        default: []
+        description: Extra SSH public keys to add to authorized_keys
+      ssh_authorized_keys_skip:
+        type: list
+        elements: str
+        default: []
+        description: SSH public keys to skip/exclude from authorized_keys
+      ssh_common_options:
+        type: dict
+        default: {}
+        description: Common SSH client configuration options applied to all hosts
+      ssh_common_options_extra:
+        type: dict
+        default: {}
+        description: Extra common SSH client configuration options
+      ssh_common_options_skip:
+        type: list
+        elements: str
+        default: []
+        description: Common SSH client options to skip/exclude
+      ssh_host_options:
+        type: dict
+        default: {}
+        description: SSH client configuration options for specific host patterns
+      ssh_host_options_extra:
+        type: dict
+        default: {}
+        description: Extra SSH client configuration options for specific host patterns
+      ssh_host_options_skip:
+        type: dict
+        default: {}
+        description: SSH client options to skip/exclude for specific host patterns
+      ssh_identity_keys:
+        type: dict
+        default: {}
+        description: SSH identity keyfiles to create (key name -> public key content)
+      ssh_identity_keys_extra:
+        type: dict
+        default: {}
+        description: Extra SSH identity keys
+      ssh_identity_keys_skip:
+        type: list
+        default: {}
+        description: SSH identity keys to skip
+        elements: str
+      ssh_match_options:
+        type: dict
+        default: {}
+        description: SSH client Match block configuration options
+      ssh_match_options_extra:
+        type: dict
+        default: {}
+        description: Extra SSH client Match block configuration options
+      ssh_match_options_skip:
+        type: dict
+        default: {}
+        description: SSH client Match block options to skip/exclude
+
+dependencies:
+  - role: sysengquick.fedora.user
