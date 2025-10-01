@@ -7,5 +7,5 @@ swaylock_options_final: |
     )
     | dict2items
     | rejectattr('key', 'in', swaylock_options_skip)
-    | items2dict
+    | sort(attribute='key')
   }}
