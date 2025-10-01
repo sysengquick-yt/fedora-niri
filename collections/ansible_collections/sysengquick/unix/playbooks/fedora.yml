@@ -1,0 +1,5 @@
+---
+- name: Configure fedora system
+  hosts: "{{ targets | default('docker') }}"
+  gather_facts: false
+  roles: [sysengquick.unix.fedora]

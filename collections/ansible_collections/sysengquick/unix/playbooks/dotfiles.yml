@@ -1,0 +1,5 @@
+---
+- name: Configure dotfiles on all hosts
+  hosts: "{{ targets | default('docker') }}"
+  gather_facts: false
+  roles: [sysengquick.unix.dotfiles]
