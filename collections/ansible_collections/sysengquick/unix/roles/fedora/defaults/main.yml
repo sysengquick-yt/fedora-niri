@@ -1,0 +1,6 @@
+---
+fedora_use_apps: true
+fedora_use_dotfiles: true
+fedora_use_niri: true
+fedora_use_plymouth: true
+fedora_use_sddm: true
