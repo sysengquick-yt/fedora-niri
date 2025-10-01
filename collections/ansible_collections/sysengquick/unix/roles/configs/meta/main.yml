@@ -1,0 +1,54 @@
+---
+argument_specs:
+  main:
+    options:
+      configs_files:
+        type: dict
+        default: {}
+        description: |-
+          Default config files to install.
+
+          Keys are application names.
+          Values are dictionaries with directory and files keys.
+
+          The directory is always relative to the user's home directory.
+          Use null for the home directory itself (~ in yaml).
+          The default directory is ~/.config/APP_NAME.
+
+          If no files are specified, use ~/.config/APP_NAME/APP_NAME.conf
+
+          Example:
+
+          configs_files:
+            # copy .inputrc from inventory/files/configs/inputrc/.inputrc to ~/.inputrc
+            inputrc:
+              directory: ~
+              files: [.inputrc]
+
+            # kitty.conf -> ~/.config/kitty/kitty.conf
+            kitty: {}
+
+            # .perltidyrc -> ~/.perltidyrc
+            perltidy:
+              directory: ~
+              files: [.perltidyrc]
+
+            # argv.json -> ~/.vscode/argv.json
+            vscode:
+              directory: .vscode
+              files: [argv.json]
+
+            # waybar.jsonc and style.css -> ~/.config/waybar/
+            waybar:
+              files: [waybar.jsonc, style.css]
+      configs_files_extra:
+        type: dict
+        default: {}
+        description: Extra config files to install
+      configs_files_skip:
+        type: list
+        default: []
+        description: Config files to skip installating
+
+dependencies:
+  - role: sysengquick.unix.user

@@ -1,0 +1,9 @@
+---
+configs_files_final: |
+  {{
+    configs_files
+    | combine(configs_files_extra)
+    | dict2items
+    | rejectattr('key', 'in', configs_files_skip)
+    | sort(attribute='key')
+  }}

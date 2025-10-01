@@ -6,6 +6,10 @@ argument_specs:
         type: bool
         default: false
         description: Enable bash dotfiles configuration
+      dotfiles_configs:
+        type: bool
+        default: false
+        description: Enable custom config dotfiles configuration
       dotfiles_git:
         type: bool
         default: false

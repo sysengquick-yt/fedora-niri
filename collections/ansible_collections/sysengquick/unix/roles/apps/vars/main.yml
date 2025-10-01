@@ -1,5 +1,4 @@
 ---
-# add extra flatpaks, removing apps_skip, and sort the result
 apps_flatpaks_final: |
   {{
     apps_flatpaks

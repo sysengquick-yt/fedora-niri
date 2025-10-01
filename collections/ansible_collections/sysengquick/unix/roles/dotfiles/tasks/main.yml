@@ -5,6 +5,12 @@
   when: dotfiles_bash | bool
   tags: [dotfiles_bash]
 
+- name: Configs Tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.configs
+  when: dotfiles_configs | bool
+  tags: [dotfiles_configs]
+
 - name: Git Tasks
   ansible.builtin.import_role:
     name: sysengquick.unix.git
