@@ -2,7 +2,7 @@
 - name: Tags block
   tags: [apps_special_joplin]
   block:
-    - name: Install fuse-libs for AppImage
+    - name: Install fuse packages for AppImage
       ansible.builtin.package:
         name: [fuse, fuse-libs]
         state: present
@@ -16,7 +16,7 @@
       register: apps_stat
 
     - name: Install joplin
-      ansible.builtin.import_tasks: includes/shell_install.yml
+      ansible.builtin.import_tasks: ../shell_install.yml
       vars:
         apps_url: https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh
         apps_shell: /bin/bash

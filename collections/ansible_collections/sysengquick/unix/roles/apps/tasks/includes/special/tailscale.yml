@@ -6,7 +6,7 @@
       ansible.builtin.package_facts:
 
     - name: Install tailscale
-      ansible.builtin.import_tasks: includes/shell_install.yml
+      ansible.builtin.import_tasks: ../shell_install.yml
       vars:
         apps_url: https://tailscale.com/install.sh
         apps_become: true
