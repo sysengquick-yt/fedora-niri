@@ -234,7 +234,6 @@ niri_kdl_xwayland_satellite: ~
 niri_polkit_agent: mate
 
 # niri optional dependencies
-niri_use_sddm: true
 niri_use_swaybg: true
 niri_use_swayidle: true
 niri_use_swaylock: true

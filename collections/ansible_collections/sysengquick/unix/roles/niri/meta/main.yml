@@ -96,10 +96,6 @@ argument_specs:
         default: mate
         choices: [kde, lxqt, lxde, mate, xfce]
         description: Which graphical policykit agent to use
-      niri_use_sddm:
-        type: bool
-        default: true
-        description: Whether to use and configure SDDM
       niri_use_swaybg:
         type: bool
         default: true
