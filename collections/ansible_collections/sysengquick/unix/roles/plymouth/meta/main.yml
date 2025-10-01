@@ -1,0 +1,8 @@
+---
+argument_specs:
+  main:
+    options:
+      plymouth_theme:
+        type: str
+        default: spinfinity
+        description: Which plymouth theme to use
