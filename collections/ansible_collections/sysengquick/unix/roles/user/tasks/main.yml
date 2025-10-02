@@ -1,7 +1,15 @@
-- name: Get home directory
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    state: present
-  register: user_info
-  check_mode: true
+---
+- name: Tags block
   tags: [always]
+  block:
+    - name: Get ansible_user from controller environment
+      ansible.builtin.set_fact:
+        ansible_user: "{{ lookup('ansible.builtin.env', 'USER') }}"
+      when: ansible_user is not defined
+
+    - name: Get user information
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        state: present
+      register: user_info
+      check_mode: true
