@@ -3,6 +3,10 @@ bash_aliases: {}
 bash_aliases_extra: {}
 bash_aliases_skip: []
 
+bash_custom_config: {}
+bash_custom_config_extra: {}
+bash_custom_config_skip: []
+
 bash_environment: {}
 bash_environment_extra: {}
 bash_environment_skip: []
@@ -15,12 +19,7 @@ bash_functions: {}
 bash_functions_extra: {}
 bash_functions_skip: []
 
-bash_history_options: []
 bash_prompt: ~
-
-bash_shell_options: []
-bash_shell_options_extra: []
-bash_shell_options_skip: []
 
 bash_sources: []
 bash_sources_extra: []

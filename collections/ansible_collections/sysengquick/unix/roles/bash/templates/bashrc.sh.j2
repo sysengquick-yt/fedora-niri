@@ -20,23 +20,17 @@ fi
 {% endif %}
 # end custom bash prompt
 
-# begin bash history options
-{% for option in bash_history_options %}
-shopt -s {{ option }}
-{% endfor %}
-# end bash history options
-
-# begin shell options
-{% for option in bash_shell_options_final %}
-set -o {{ option }}
-{% endfor %}
-# end shell options
-
 # begin environment vars
 {% for item in bash_environment_final %}
 export {{ item.key }}={{ item.value | quote }}
 {% endfor %}
 # end environment vars
+
+# begin bash aliases
+{% for item in bash_aliases_final %}
+alias {{ item.key }}={{ item.value | quote }}
+{% endfor %}
+# end bash aliases
 
 # begin bash functions
 {% for item in bash_functions_final %}
@@ -46,17 +40,17 @@ function {{ item.key }} {
 {% endfor %}
 # end bash functions
 
-# begin bash aliases
-{% for item in bash_aliases_final %}
-alias {{ item.key }}={{ item.value | quote }}
-{% endfor %}
-# end bash aliases
-
 # begin sourced files
 {% for source in bash_sources_final %}
 [ -f {{ source }} ] && . {{ source | quote }}
 {% endfor %}
 # end sourced files
+
+{% for config in bash_custom_config_final %}
+# {{ config.key }}
+{{ config.value }}
+
+{% endfor -%}
 
 # User specific aliases and functions
 if [ -d ~/.bashrc.d ]; then

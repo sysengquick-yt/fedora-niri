@@ -9,6 +9,15 @@ bash_aliases_final: |
     | sort(attribute='key')
   }}
 
+bash_custom_config_final: |
+  {{
+    bash_custom_config
+    | combine(bash_custom_config_extra)
+    | dict2items
+    | rejectattr('key', 'in', bash_custom_config_skip)
+    | sort(attribute='key')
+  }}
+
 bash_environment_final: |
   {{
     bash_environment
@@ -43,14 +52,6 @@ bash_paths_final: |
     {%- endif %}
   {% endfor %}
   {{ final_paths }}
-
-bash_shell_options_final: |
-  {{
-    bash_shell_options
-    | union(bash_shell_options_extra)
-    | difference(bash_shell_options_skip)
-    | sort
-  }}
 
 bash_sources_final: |
   {{

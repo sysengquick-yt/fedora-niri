@@ -14,6 +14,28 @@ argument_specs:
         elements: str
         default: []
         description: Aliases to skip
+      bash_custom_config:
+        type: dict
+        default: {}
+        description: |-
+          Custom config sections to insert into bashrc.
+
+          Keys are section comments. Values are strings for the bash config.
+
+          Example:
+
+          bash_custom_config:
+            'bash history options': |-
+              shopt -s histappend
+              shopt -s histverify
+      bash_custom_config_extra:
+        type: str
+        default: {}
+        description: Extra config sections to insert into bashrc
+      bash_custom_config_skip:
+        type: str
+        default: {}
+        description: Config section to skip
       bash_environment:
         type: dict
         description: Environment variable definitions
@@ -39,19 +61,10 @@ argument_specs:
         elements: str
         default: []
         description: Functions to skip
-      bash_history_options:
-        type: list
-        elements: str
-        default:
-          - histappend
-          - histverify
-        description: History options to set
       bash_paths:
         type: list
         elements: str
-        default:
-          - ~/.local/bin
-          - ~/bin
+        default: []
         description: Directories to add to PATH
       bash_paths_extra:
         type: list
@@ -66,26 +79,10 @@ argument_specs:
       bash_prompt:
         type: str
         description: Bash prompt configuration function
-      bash_shell_options:
-        type: list
-        default: []
-        elements: str
-        description: Bash shell options to configure (e.g 'vi')
-      bash_shell_options_extra:
-        type: list
-        default: []
-        elements: str
-        description: Extra Bash shell options to configure
-      bash_shell_options_skip:
-        type: list
-        default: []
-        elements: str
-        description: Bash shell options to skip
       bash_sources:
         type: list
         elements: str
-        default:
-          - /usr/share/bash-completion/bash_completion
+        default: []
         description: Files to source in bash configuration
       bash_sources_extra:
         type: list
