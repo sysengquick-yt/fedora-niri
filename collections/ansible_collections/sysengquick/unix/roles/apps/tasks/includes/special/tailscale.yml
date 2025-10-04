@@ -1,0 +1,27 @@
+---
+- name: Tags block
+  tags: [apps_special_tailscale]
+  block:
+    - name: Gather facts about installed packages
+      ansible.builtin.package_facts:
+
+    - name: Install tailscale
+      ansible.builtin.import_tasks: ../shell_install.yml
+      vars:
+        apps_url: https://tailscale.com/install.sh
+        apps_become: true
+      when: apps_upgrade | bool or 'tailscale' not in ansible_facts.packages
+
+    - name: Gather interfaces
+      ansible.builtin.setup:
+        gather_subset: [interfaces]
+
+    - name: Bring up tailscale
+      ansible.builtin.command:
+        cmd: tailscale up --auth-key={{ apps_special_tailscale_authkey }}
+      no_log: true # this command includes a password
+      changed_when: true
+      become: true
+      when:
+        - apps_special_tailscale_authkey | default('') | length > 0
+        - "'ipv4' not in ansible_facts.tailscale0"

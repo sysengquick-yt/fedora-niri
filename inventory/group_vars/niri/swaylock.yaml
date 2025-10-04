@@ -1,0 +1,5 @@
+---
+swaylock_options:
+  color: 1e1e1e
+  ignore-empty-password: ~
+  show-failed-attempts: ~

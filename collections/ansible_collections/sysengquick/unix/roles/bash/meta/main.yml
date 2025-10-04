@@ -1,0 +1,122 @@
+---
+argument_specs:
+  main:
+    options:
+      bash_aliases:
+        type: dict
+        description: Bash alias definitions
+      bash_aliases_extra:
+        type: dict
+        default: {}
+        description: Extra aliases
+      bash_aliases_skip:
+        type: list
+        elements: str
+        default: []
+        description: Aliases to skip
+      bash_custom_config:
+        type: dict
+        default: {}
+        description: |-
+          Custom config sections to insert into bashrc.
+
+          Keys are section comments. Values are strings for the bash config.
+
+          Example:
+
+          bash_custom_config:
+            'bash history options': |-
+              shopt -s histappend
+              shopt -s histverify
+      bash_custom_config_extra:
+        type: str
+        default: {}
+        description: Extra config sections to insert into bashrc
+      bash_custom_config_skip:
+        type: str
+        default: {}
+        description: Config section to skip
+      bash_environment:
+        type: dict
+        description: Environment variable definitions
+      bash_environment_extra:
+        type: dict
+        default: {}
+        description: Extra environment variables
+      bash_environment_skip:
+        type: list
+        elements: str
+        default: []
+        description: Environment variables to skip
+      bash_functions:
+        type: dict
+        default: {}
+        description: Function definitions
+      bash_functions_extra:
+        type: dict
+        default: {}
+        description: Extra functions
+      bash_functions_skip:
+        type: list
+        elements: str
+        default: []
+        description: Functions to skip
+      bash_paths:
+        type: list
+        elements: str
+        default: []
+        description: Directories to add to PATH
+      bash_paths_extra:
+        type: list
+        elements: str
+        default: []
+        description: Extra paths
+      bash_paths_skip:
+        type: list
+        elements: str
+        default: []
+        description: Default paths to skip
+      bash_prompt:
+        type: str
+        description: Bash prompt configuration function
+      bash_sources:
+        type: list
+        elements: str
+        default: []
+        description: Files to source in bash configuration
+      bash_sources_extra:
+        type: list
+        elements: str
+        default: []
+        description: Extra files to source
+      bash_sources_skip:
+        type: list
+        elements: str
+        default: []
+        description: Source files to skip
+      bash_ssh_agent:
+        type: bool
+        default: false
+        description: Flag to start persistent SSH agent in login shells
+      bash_umask:
+        type: str
+        default: "0022"
+        description: User file creation mask
+      bash_use_upstream_aliases:
+        type: bool
+        default: true
+        description: |
+          Whether to include the upstream fedora default aliases: [ls, ll]
+      bash_use_upstream_paths:
+        type: bool
+        default: true
+        description: |
+          Whether to include the upstream fedora default paths: [~/.local/bin, ~/bin]
+      bash_use_upstream_sources:
+        type: bool
+        default: true
+        description: |
+          Whether to include the upstream fedora default sources: [bash_completion]
+
+dependencies:
+  - role: sysengquick.unix.user

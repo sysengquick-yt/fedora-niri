@@ -1,0 +1,9 @@
+---
+fstab_mounts_final: |
+  {{
+    fstab_mounts
+    | combine(fstab_mounts_extra)
+    | dict2items
+    | rejectattr('key', 'in', fstab_mounts_skip)
+    | sort(attribute='key')
+  }}

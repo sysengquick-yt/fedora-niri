@@ -1,0 +1,9 @@
+- name: Template sddm configs
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/{{ item }}"
+    owner: root
+    group: root
+    mode: "0644"
+    backup: true
+  loop: "{{ sddm_templates + [sddm_compositor_template[sddm_compositor]] }}"

@@ -1,21 +1,13 @@
 ---
-_bash_aliases:
+bash_aliases:
   backup_ls: find . -type f -name '*~'
   backup_rm: find . -type f -name '*~' -delete
   fix_perms: find . \( -type f -exec chmod 644 {} + \) -o \( -type d -exec chmod 755 {} + \)
   ipt: sudo iptables --line-numbers -nvL
   ip6t: sudo ip6tables --line-numbers -nvL
-  ssh_kill: pkill -f .ssh/cp-$(whoami)@
 
-  # display names of all bash functions, like alias does for aliases
+  # display bash functions, like alias does for aliases
   fcns: compgen -A function | grep -v '^_'
-
-bash_aliases: |
-  {{
-    bash_aliases_presets
-    | default({})
-    | combine(_bash_aliases)
-  }}
 
 bash_environment:
   EDITOR: vim
@@ -28,7 +20,10 @@ bash_environment:
   PAGER: less -X
   PROMPT_DIRTRIM: 4
 
-bash_history_options: [histappend, histverify]
+bash_custom_config:
+  "bash history options": |-
+    shopt -s histappend
+    shopt -s histverify
 
 bash_functions:
   ssl_cert_expire: |-
@@ -70,7 +65,8 @@ bash_prompt: |-
 
       # Git branch in yellow (if exists)
       local git_branch
-      git_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+      git_branch=$(git --no-optional-locks symbolic-ref --short HEAD 2>/dev/null || git --no-optional-locks rev-parse --short HEAD 2>/dev/null)
+
       if [[ -n "$git_branch" ]]; then
           git_branch="${yellow} (${git_branch})${reset}"
       fi
@@ -79,5 +75,3 @@ bash_prompt: |-
       PS1="${error_display}${venv}${username} ${arrow} ${path}${git_branch} $ "
   }
   PROMPT_COMMAND=__bash_prompt
-
-bash_shell_options: ["vi"]

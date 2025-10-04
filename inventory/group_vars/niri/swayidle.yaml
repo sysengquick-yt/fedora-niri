@@ -1,0 +1,3 @@
+---
+# 15 minutes for monitor power off
+swayidle_timeout_monitors: 900

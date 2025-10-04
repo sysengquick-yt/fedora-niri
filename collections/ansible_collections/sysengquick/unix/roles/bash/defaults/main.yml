@@ -1,0 +1,33 @@
+---
+bash_aliases: {}
+bash_aliases_extra: {}
+bash_aliases_skip: []
+
+bash_custom_config: {}
+bash_custom_config_extra: {}
+bash_custom_config_skip: []
+
+bash_environment: {}
+bash_environment_extra: {}
+bash_environment_skip: []
+
+bash_paths: []
+bash_paths_extra: []
+bash_paths_skip: []
+
+bash_functions: {}
+bash_functions_extra: {}
+bash_functions_skip: []
+
+bash_prompt: ~
+
+bash_sources: []
+bash_sources_extra: []
+bash_sources_skip: []
+
+bash_ssh_agent: false
+bash_umask: "0022"
+
+bash_use_upstream_aliases: true
+bash_use_upstream_paths: true
+bash_use_upstream_sources: true

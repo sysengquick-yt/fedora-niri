@@ -1,0 +1,4 @@
+---
+waybar_config_files:
+  - config.jsonc
+  - style.css

@@ -1,0 +1,33 @@
+---
+argument_specs:
+  main:
+    options:
+      sddm_compositor:
+        type: str
+        default: niri
+        choices: [niri]
+        description: |-
+          Which wayland compositor should SDDM use.
+
+          There is only one option right now, niri.
+          This is a placeholder for future playbook expansion (e.g. hyprland?)
+      sddm_custom_compositor_config:
+        type: str
+        description: |-
+          Custom config string to insert into the compositor config.
+
+          Example: Adding monitor configuration for niri:
+
+          output "HDMI-A-1" {
+              mode "2560x1440@119.989"
+              position x=0 y=0
+          }
+
+          output "HDMI-A-2" {
+              mode "2560x1440@119.989"
+              position x=2560 y=0
+          }
+      sddm_theme:
+        type: str
+        default: maldives
+        description: Which SDDM theme to use

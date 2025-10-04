@@ -1,0 +1,24 @@
+---
+- name: Bash Tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.bash
+  when: dotfiles_bash | bool
+  tags: [dotfiles_bash]
+
+- name: Configs Tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.configs
+  when: dotfiles_configs | bool
+  tags: [dotfiles_configs]
+
+- name: Git Tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.git
+  when: dotfiles_git | bool
+  tags: [dotfiles_git]
+
+- name: SSH Tasks
+  ansible.builtin.import_role:
+    name: sysengquick.unix.ssh
+  when: dotfiles_ssh | bool
+  tags: [dotfiles_ssh]

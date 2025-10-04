@@ -1,0 +1,5 @@
+---
+dotfiles_bash: false
+dotfiles_configs: true
+dotfiles_git: false
+dotfiles_ssh: false

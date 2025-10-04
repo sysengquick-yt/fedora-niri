@@ -1,0 +1,35 @@
+---
+- name: Tags block
+  tags: [apps_special_tmux]
+  vars:
+    apps_tmux_path: "{{ user_info.home }}/.local/bin/tmux"
+  block:
+    - name: Check if tmux is installed
+      ansible.builtin.stat:
+        path: "{{ apps_tmux_path }}"
+        get_attributes: false
+        get_checksum: false
+      register: apps_stat
+
+    - name: When block
+      when: not apps_stat.stat.exists or apps_upgrade | bool
+      block:
+        - name: Create ~/.local/bin directory
+          ansible.builtin.file:
+            path: "{{ user_info.home }}/.local/bin"
+            state: directory
+            mode: "0755"
+
+        - name: Get tmux package info from GitHub API
+          ansible.builtin.uri:
+            url: https://api.github.com/repos/nelsonenzo/tmux-appimage/releases/latest
+            return_content: true
+          register: apps_release_info
+
+        - name: Download tmux
+          ansible.builtin.get_url:
+            url: "https://github.com/nelsonenzo/tmux-appimage/releases/download/{{ apps_version }}/tmux.appimage"
+            dest: "{{ apps_tmux_path }}"
+            mode: "0755"
+          vars:
+            apps_version: "{{ apps_release_info.json.tag_name }}"

@@ -1,0 +1,47 @@
+---
+argument_specs:
+  main:
+    options:
+      git_config:
+        type: dict
+        description: |-
+          The git configuration options.
+
+          user.name and user.email are required.
+          Everything else is optional.
+
+          Example:
+
+          git_config:
+            user:
+              name: John Ratliff
+              email: john@technoplaza.net
+            alias:
+              oneline: log --oneline
+            commit:
+              template: /dev/null
+            core:
+              editor: vim
+            credential:
+              helper: cache --timeout=14400
+              uisername: jdratlif
+            diff:
+              tool: default-difftool
+            'difftool "default-difftool"':
+              cmd: code --wait --diff $LOCAL $REMOTE
+            pull:
+              rebase: true
+            safe:
+              directory: "*"
+      git_config_extra:
+        type: dict
+        default: {}
+        description: Extra gitconfig options
+      git_config_skip:
+        type: list
+        default: []
+        description: Options in gitconfig to skip
+        elements: str
+
+dependencies:
+  - role: sysengquick.unix.user

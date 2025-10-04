@@ -1,0 +1,9 @@
+---
+sudoers_rules_final: |
+  {{
+    sudoers_rules
+    | combine(sudoers_rules_extra)
+    | dict2items
+    | rejectattr('key', 'in', sudoers_rules_skip)
+    | sort(attribute='key')
+  }}

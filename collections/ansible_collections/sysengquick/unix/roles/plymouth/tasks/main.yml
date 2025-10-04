@@ -1,0 +1,30 @@
+---
+- name: Get current plymouth theme
+  ansible.builtin.command:
+    cmd: plymouth-set-default-theme
+  changed_when: false
+  register: plymouth_current_theme
+
+- name: Continue only if we are on another theme
+  when: plymouth_current_theme.stdout != plymouth_theme
+  block:
+    - name: Check if plymouth theme package exists
+      ansible.builtin.command:
+        cmd: "dnf --assumeno info plymouth-theme-{{ plymouth_theme }}"
+      register: plymouth_package
+      failed_when: false
+      changed_when: false
+
+    - name: Root tasks
+      become: true
+      block:
+        - name: Install plymouth theme package
+          ansible.builtin.package:
+            name: "{{ 'plymouth-theme-' ~ plymouth_theme }}"
+            state: present
+          when: plymouth_package.rc == 0
+
+        - name: Switch plymouth theme
+          ansible.builtin.command:
+            cmd: "plymouth-set-default-theme {{ plymouth_theme }} -R"
+          changed_when: true

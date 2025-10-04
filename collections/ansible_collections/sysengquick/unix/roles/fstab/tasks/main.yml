@@ -1,0 +1,21 @@
+---
+- name: Become block
+  become: true
+  block:
+    - name: Create the mountpoint
+      ansible.builtin.file:
+        path: "{{ item.key }}"
+        state: directory
+        mode: "0755"
+      loop: "{{ fstab_mounts_final }}"
+
+    - name: Update /etc/fstab
+      ansible.posix.mount:
+        state: "{{ item.value.state | default('mounted') }}"
+        path: "{{ item.key }}"
+        src: "{{ item.value.src }}"
+        fstype: "{{ item.value.fstype }}"
+        opts: "{{ item.value.opts }}"
+        dump: "{{ item.value.dump | default(omit) }}"
+        passno: "{{ item.value.passno | default(omit) }}"
+      loop: "{{ fstab_mounts_final }}"

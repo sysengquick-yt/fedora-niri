@@ -1,0 +1,10 @@
+---
+- name: Write config file for {{ item.key }}
+  ansible.builtin.copy:
+    src: "{{ inventory_dir }}/files/configs/{{ item.key }}/{{ filename }}"
+    dest: "{{ configs_opts.directory if configs_opts.directory else user_info.home }}/{{ filename }}"
+    mode: "0644"
+    backup: true
+  loop: "{{ configs_opts.files }}"
+  loop_control:
+    loop_var: filename

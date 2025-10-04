@@ -1,0 +1,9 @@
+---
+git_config_final: |
+  {{
+    git_config
+    | combine(git_config_extra, recursive=True)
+    | dict2items
+    | rejectattr('key', 'in', git_config_skip)
+    | sort(attribute='key')
+  }}

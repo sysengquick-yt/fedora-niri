@@ -1,0 +1,42 @@
+---
+- name: Niri role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.niri
+  when: fedora_use_niri | bool
+  tags: [fedora_niri]
+
+- name: SDDM role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.sddm
+  when: fedora_use_sddm | bool
+  tags: [fedora_sddm]
+
+- name: Plymouth role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.plymouth
+  when: fedora_use_plymouth | bool
+  tags: [fedora_plymouth]
+
+- name: Apps role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.apps
+  when: fedora_use_apps | bool
+  tags: [fedora_apps]
+
+- name: Dotfiles role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.dotfiles
+  when: fedora_use_dotfiles | bool
+  tags: [fedora_dotfiles]
+
+- name: Fstab role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.fstab
+  when: fedora_use_fstab | bool
+  tags: [fedora_fstab]
+
+- name: Sudoers role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.sudoers
+  when: fedora_use_sudoers | bool
+  tags: [fedora_sudoers]

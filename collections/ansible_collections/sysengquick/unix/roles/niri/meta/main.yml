@@ -1,0 +1,117 @@
+---
+argument_specs:
+  main:
+    options:
+      niri_kdl_animations:
+        type: str
+        description: Animation configuration block for niri
+      niri_kdl_binds:
+        type: str
+        description: Key binds configuration block for niri
+      niri_kdl_binds_extra:
+        type: dict
+        default: {}
+        description: Extra key binds to add/override
+      niri_kdl_binds_skip:
+        type: list
+        elements: str
+        default: []
+        description: Keybinds to remove from defaults
+      niri_kdl_clipboard:
+        type: str
+        description: Clipboard configuration block for niri
+      niri_kdl_config_notification:
+        type: str
+        description: Config notification settings for niri
+      niri_kdl_cursor:
+        type: str
+        description: Cursor configuration block for niri
+      niri_kdl_debug:
+        type: str
+        description: Debug configuration block for niri
+      niri_kdl_environment:
+        type: dict
+        default: {}
+        description: Environment variables to set for niri session
+      niri_kdl_gestures:
+        type: str
+        description: Gesture configuration block for niri
+      niri_kdl_hotkey_overlay:
+        type: str
+        description: Hotkey overlay configuration block for niri
+      niri_kdl_input:
+        type: str
+        description: Input device configuration block for niri
+      niri_kdl_layout:
+        type: str
+        description: Layout configuration block for niri
+      niri_kdl_layout_rules:
+        type: list
+        default: []
+        description: Layout rule configuration blocks for niri
+        elements: str
+      niri_kdl_outputs:
+        type: dict
+        default: {}
+        description: |
+          Configure individual displays and monitors.
+
+          Dictionary where keys are output names (eDP-1, HDMI-A-1, Virtual-1, etc.)
+          and values are niri configuration blocks for that output's settings like
+          resolution, position, scale, transform, etc.
+      niri_kdl_overview:
+        type: str
+        description: Overview configuration block for niri
+      niri_kdl_prefer_no_csd:
+        type: bool
+        default: true
+        description: Whether to prefer no client-side decorations
+      niri_kdl_screenshot_path:
+        type: str
+        default: "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+        description: Path template for screenshots
+      niri_kdl_spawn_at_startup:
+        type: list
+        default: []
+        description: Commands to spawn at niri startup
+        elements: str
+      niri_kdl_spawn_sh_at_startup:
+        type: list
+        default: []
+        description: Shell commands to spawn at niri startup
+        elements: str
+      niri_kdl_switch_events:
+        type: str
+        description: Switch event configuration block for niri
+      niri_kdl_window_rules:
+        type: list
+        default: []
+        description: Window rule configuration blocks for niri
+        elements: str
+      niri_kdl_xwayland_satellite:
+        type: str
+        description: Xwayland satellite configuration block for niri
+      niri_polkit_agent:
+        type: str
+        default: mate
+        choices: [kde, lxqt, lxde, mate, xfce]
+        description: Which graphical policykit agent to use
+      niri_use_swaybg:
+        type: bool
+        default: true
+        description: Whether to use and configure swaybg
+      niri_use_swayidle:
+        type: bool
+        default: true
+        description: Whether to use and configure swayidle
+      niri_use_swaylock:
+        type: bool
+        default: true
+        description: Whether to use and configure swaylock
+      niri_use_waybar:
+        type: bool
+        default: true
+        description: Whether to use and configure waybar
+
+dependencies:
+  - role: sysengquick.unix.user_systemd_folder

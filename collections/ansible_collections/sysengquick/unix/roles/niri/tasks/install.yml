@@ -1,0 +1,11 @@
+---
+- name: Setup niri COPR repo
+  community.general.copr:
+    host: copr.fedorainfracloud.org
+    state: enabled
+    name: yalter/niri
+
+- name: Install niri packages
+  ansible.builtin.package:
+    name: "{{ niri_packages + niri_polkit_agents[niri_polkit_agent].packages }}"
+    state: present

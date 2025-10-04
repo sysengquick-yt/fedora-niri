@@ -8,7 +8,6 @@ ssh_identity_keys_extra:
 
 ssh_common_options_extra:
   IdentitiesOnly: "yes"
-  IdentityAgent: ~/.1password/agent.sock
   ControlMaster: auto
   ControlPath: ~/.ssh/cp-%r@%h:%p
   ControlPersist: 5m
@@ -23,9 +22,8 @@ ssh_host_options_extra:
       - "*:1082 localhost:1082"
       - "*:1083 localhost:1083"
   sandbox: {}
-  puppet7.bldc:
+  puppet7:
     IdentityFile: ~/.ssh/jdratlif.pub
-  puppet7.ctc: {}
   pangolin16: &laptops
     IdentityFile: ~/.ssh/jdratlif.pub
   asahi:

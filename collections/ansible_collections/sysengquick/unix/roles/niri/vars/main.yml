@@ -1,0 +1,74 @@
+---
+# noqa jinja[spacing]
+niri_kdl_binds_final: |-
+  {% set result = {} %}
+  {% for line in niri_kdl_binds.split('\n') | map('trim') | select() %}
+    {%- set parts = line.split(' ', 1) %}
+    {%- set _ = result.update({parts[0]: parts[1]}) %}
+  {% endfor %}
+  {% for item in (result | combine(niri_kdl_binds_extra)) | dict2items | rejectattr('key', 'in', niri_kdl_binds_skip) %}
+  {{ item.key }} {{ item.value }}
+  {% endfor %}
+
+niri_kdl_sections:
+  - animations
+  - clipboard
+  - config-notification
+  - cursor
+  - debug
+  - gestures
+  - hotkey-overlay
+  - input
+  - layout
+  - overview
+  - switch-events
+  - xwayland-satellite
+
+niri_packages:
+  - blueman
+  - default-fonts-core-emoji
+  - default-fonts-core-math
+  - default-fonts-core-mono
+  - default-fonts-core-sans
+  - default-fonts-core-serif
+  - nautilus
+  - network-manager-applet
+  - NetworkManager-wifi
+  - niri
+  - pasystray
+
+niri_polkit_agents:
+  kde:
+    packages: ["polkit-kde", "kf6-kirigami"]
+    exec: /usr/libexec/kf6/polkit-kde-authentication-agent-1
+  lxqt:
+    packages: ["lxqt-policykit"]
+    exec: /usr/libexec/lxqt-policykit-agent
+  lxde:
+    packages: ["lxpolkit"]
+    exec: /usr/bin/lxpolkit
+  mate:
+    packages: ["mate-polkit"]
+    exec: /usr/libexec/polkit-mate-authentication-agent-1
+  xfce:
+    packages: ["xfce-polkit"]
+    exec: /usr/libexec/xfce-polkit
+
+niri_service_dep_wants: |-
+  {# initialize result list #}
+  {% set _services = [] -%}
+
+  {# Loop over each dependent service #}
+  {% for name in ['swaybg', 'swayidle', 'waybar'] -%}
+
+  {# find the corresponding niri_use flag #}
+  {% set var_name = 'niri_use_' ~ name -%}
+
+  {# if the flag is set, add the service to final list #}
+  {% if vars[var_name] %}
+    {%- set _ = _services.append(name ~ '.service') %}
+  {% endif %}
+  {% endfor %}
+  {{ _services }}
+
+niri_service_wants: "{{ ['niri-polkit.service'] + niri_service_dep_wants }}"

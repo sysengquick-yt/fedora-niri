@@ -1,0 +1,16 @@
+---
+- name: Template niri-polkit systemd service file
+  ansible.builtin.template:
+    src: "niri-polkit.service.j2"
+    dest: "{{ user_info.home }}/.config/systemd/user/niri-polkit.service"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+    backup: true
+  notify: systemd_user_daemon_reload
+
+- name: Add niri.service wants # noqa: command-instead-of-module
+  ansible.builtin.command:
+    cmd: "systemctl --user add-wants niri.service {{ item }}"
+    creates: "{{ user_info.home }}/.config/systemd/user/niri.service.wants/{{ item }}"
+  loop: "{{ niri_service_wants }}"

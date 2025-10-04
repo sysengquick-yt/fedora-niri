@@ -1,0 +1,14 @@
+---
+- name: Create waybar config directory
+  ansible.builtin.file:
+    state: directory
+    dest: "{{ user_info.home }}/.config/waybar"
+    mode: "0755"
+
+- name: Copy waybar config files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ user_info.home }}/.config/waybar/{{ item }}"
+    mode: "0644"
+    force: false
+  loop: "{{ waybar_config_files }}"

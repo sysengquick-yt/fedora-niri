@@ -1,7 +1,0 @@
-- name: Get home directory
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    state: present
-  register: user_info
-  check_mode: true
-  tags: [always]
