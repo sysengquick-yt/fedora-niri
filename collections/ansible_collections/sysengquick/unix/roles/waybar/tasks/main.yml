@@ -3,21 +3,12 @@
   ansible.builtin.file:
     state: directory
     dest: "{{ user_info.home }}/.config/waybar"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
     mode: "0755"
 
 - name: Copy waybar config files
   ansible.builtin.copy:
-    content: |
-      {{ contents }}
+    src: "{{ item }}"
     dest: "{{ user_info.home }}/.config/waybar/{{ item }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
     mode: "0644"
-    backup: true
-    force: "{{ waybar_overwrite_config_files | bool or custom_file }}"
+    force: false
   loop: "{{ waybar_config_files }}"
-  vars:
-    contents: "{{ custom_file if custom_file else lookup('ansible.builtin.file', item) }}"
-    custom_file: "{{ lookup('ansible.builtin.file', inventory_dir + '/files/waybar/' + item, errors='ignore') }}"
