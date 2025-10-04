@@ -1,0 +1,32 @@
+---
+argument_specs:
+  main:
+    options:
+      fstab_mounts:
+        type: dict
+        default: {}
+        description: |-
+          Default fstab mounts to add.
+
+          Each key in the dictionary is the mount point.
+
+          Each value is a dictionary with state, src, fstype, opts, dump, ans passno keys.
+          When not supplied, state defaults to 'mounted', dump and passno default to '0'.
+          These keys match up with the arguments to ansible.posix.mount.
+
+          Example:
+
+          fstab_mounts:
+            /mnt/nas:
+              state: present
+              src: //192.168.1.2/tank
+              fstype: cifs
+              opts: noauto,x-systemd.automount,_netdev,guest,uid=1000,gid=1000,file_mode=0644,dir_mode=0755
+      fstab_mounts_extra:
+        type: dict
+        default: {}
+        description: Extra fstab mounts to add
+      fstab_mounts_skip:
+        type: list
+        default: []
+        description: fstab mounts to skip adding
