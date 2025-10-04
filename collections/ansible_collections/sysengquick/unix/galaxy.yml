@@ -40,6 +40,7 @@ tags: [linux]
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies:
+  ansible.posix: ">=2.1.0"
   community.general: ">=9.5.11"
 
 # The URL of the originating SCM repository
