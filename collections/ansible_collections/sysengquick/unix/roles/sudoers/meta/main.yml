@@ -1,0 +1,43 @@
+---
+argument_specs:
+  main:
+    options:
+      sudoers_rules:
+        type: dict
+        default: {}
+        description: |-
+          Default sudoers rules to add.
+
+          Each key in the dictionary is the name of the sudoers file.
+
+          The value is a dictionary with commands, group, host, noexec, nopasswd, runas, setenv, and user keys.
+          These keys align with the community.general.sudoers module arguments.
+
+          When not specified, these values are used by default:
+
+            commands: ALL
+            host: ALL
+            noexec: false
+            nopassword: true
+            setenv: false
+
+          Example:
+
+          sudoers_rules:
+            dnf:
+              commands: /usr/bin/dnf
+              group: wheel
+            power:
+              commands:
+                - /usr/bin/poweroff
+                - /usr/bin/shutdown
+                - /usr/bin/reboot
+              group: wheel
+      sudoers_rules_extra:
+        type: dict
+        default: {}
+        description: Extra fstab mounts to add
+      sudoers_rules_skip:
+        type: list
+        default: []
+        description: fstab mounts to skip adding

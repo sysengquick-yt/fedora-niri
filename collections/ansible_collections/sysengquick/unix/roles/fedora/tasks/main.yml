@@ -34,3 +34,9 @@
     name: sysengquick.unix.fstab
   when: fedora_use_fstab | bool
   tags: [fedora_fstab]
+
+- name: Sudoers role
+  ansible.builtin.import_role:
+    name: sysengquick.unix.sudoers
+  when: fedora_use_sudoers | bool
+  tags: [fedora_sudoers]

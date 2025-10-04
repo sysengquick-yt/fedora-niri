@@ -1,0 +1,15 @@
+---
+- name: Add sudoers rules
+  community.general.sudoers:
+    state: present
+    name: "{{ item.key }}"
+    user: "{{ item.value.user | default(omit) }}"
+    group: "{{ item.value.group | default(omit) }}"
+    commands: "{{ item.value.commands }}"
+    host: "{{ item.value.host | default(omit) }}"
+    noexec: "{{ item.value.noexec | default(omit) }}"
+    nopassword: "{{ item.value.nopassword | default(omit) }}"
+    runas: "{{ item.value.runas | default(omit) }}"
+    setenv: "{{ item.value.setenv | default(omit) }}"
+  become: true
+  loop: "{{ sudoers_rules_final }}"

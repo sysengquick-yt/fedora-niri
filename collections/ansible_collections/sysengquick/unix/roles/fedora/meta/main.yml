@@ -26,3 +26,7 @@ argument_specs:
         type: bool
         default: true
         description: Install and configure SDDM
+      fedora_use_sudoers:
+        type: bool
+        default: true
+        description: Setup /etc/sudoers.d commands
